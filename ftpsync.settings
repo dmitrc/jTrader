@@ -1,0 +1,29 @@
+{
+	"default": {
+
+		"host": "userweb.jacobs-university.de",
+		"username": "dcucleschi-4",
+		"password": "g2NRV9DL",
+		"path": "/htdocs/",
+		 "upload_on_save": true,
+		 "passive": true,
+		 "ignore": ".gitignore"
+
+		 // "port": 21,
+		// "tls": false,
+		// "timeout": 30, // [seconds]
+		// "download_on_open": false,
+		// "overwrite_newer_prevention": true,
+		// "default_folder_permissions": "755",
+		// "time_offset": 0, // [seconds]
+		// "always_sync_local_permissions": true,
+		// "encoding": "auto",
+		// "use_tempfile": true,
+		// "upload_delay": 0, // [seconds]
+		// "set_remote_lastmodified": true,
+		// "default_local_permissions": "auto",
+		// "after_save_watch": []
+
+	}
+
+}
