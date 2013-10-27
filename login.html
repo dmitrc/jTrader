@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>jTrade / Management</title>
+	<title>jTrade / Login</title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 	<meta charset="utf-8">
@@ -38,21 +38,34 @@
 				<li><a href="index.html">Home</a></li>
 				<li><a data-toggle="modal" href="#about-modal">About</a></li>
 				<li><a data-toggle="modal" href="#contact-modal">Contact</a></li>
-				<li><a href="login.html">Login</a></li>
-				<li class="active"><a href="inc/management.html">Management</a></li>
+				<li class="active"><a href="login.html">Login</a></li>
+				<li><a href="management.html">Management</a></li>
 			</ul>
 		</div>
 	</div>
 </nav>
 
+<div class="row"><br/></div>
+<div class="row"><br/></div>
+
 <div class="row">
-	<div class="container well well-lg">
-		<div class="col-lg-12 col-sm-12">
-			<p class="lead"><a href="categories.php">Insert form for categories</a></h3>
-			<p class="lead"><a href="subscriptions.php">Insert form for subscriptions</a></h3>
-		</div>
-	</div>
+	<div class="container col-lg-4 col-sm-4 col-lg-offset-4 col-sm-offset-2">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in with your CampusNet data:</h2>
+        <input type="text" class="form-control" id="form_name" placeholder="Username" autofocus>
+        <input type="password" class="form-control" id="form_pass" placeholder="Password">
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <div class="login-button btn btn-lg btn-primary btn-block">Sign in</button>
+      </form>
+
+    </div>
 </div>
+
+<div class="row"><br/></div>
+<div class="row"><br/></div>
 
 <div id="footer">
     <div class="container">
@@ -85,6 +98,21 @@
 	</div>
 </div>
 
+<div class="modal fade" id="results-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	      <h4 class="modal-title">Results</h4>
+	    </div>
+	    <div class="modal-body">
+	      	<div id="results-content">
+	      	</div>
+	    </div>
+	  </div>
+	</div>
+</div>
+
 <div class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 	  <div class="modal-content">
@@ -106,6 +134,17 @@
 	</div>
 </div>
 
+<script type="text/javascript">
+		$(".login-button").click(function () {
+			var form_login = $("#form_name").val();
+			console.log(form_login); 
+			var form_pass = $("#form_pass").val(); 
+			$.post("/inc/login.php", { username : form_login , password : form_pass }, function(results){
+				$("#results-content").html(results);
+				$('#results-modal').modal('show');
+			}); 
+	});
+</script>
 </body>
 
 </html>
