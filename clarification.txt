@@ -1,0 +1,6 @@
+We decided to change some things from the original CD.
+
+Namely:
+* Using logo is a big 'red flag' for responsive development (as scaling of the image won't work that great when changing layouts from desktop to mobile). We decided to use a text logo for now, with a possibility of including logo, made from the vector font.
+* Blue doesn't look consistent on the website. Therefore, at least for now, we're keeping to gray tones only - that makes website look professional and modern.
+* All the other aspects, including navigation bar (includes search, basic menu and profile options (that will be visible after logging in)), side menu with categories, main content with different items and footer (including disclaimer).
