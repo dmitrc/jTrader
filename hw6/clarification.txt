@@ -4,3 +4,21 @@ Namely:
 * Using logo is a big 'red flag' for responsive development (as scaling of the image won't work that great when changing layouts from desktop to mobile). We decided to use a text logo for now, with a possibility of including logo, made from the vector font.
 * Blue doesn't look consistent on the website. Therefore, at least for now, we're keeping to gray tones only - that makes website look professional and modern.
 * All the other aspects, including navigation bar (includes search, basic menu and profile options (that will be visible after logging in)), side menu with categories, main content with different items and footer (including disclaimer).
+
+We decided to use a modals for contact information(imprint) page since we consider it's a better practice. 
+Also we have a proof-of-concept login, which can be accessed by clicking the login button in the navbar.
+
+The php input components can be accessed through the management button on the navbar and there one is able to select either to enter into "categories" or "subscriptions". In practice these forms wouldn't be the exact same since specific permissions are required to do either, but it's a proof-of-concept.
+Because of similar reasons as above we implemented the php scripts and the feedback pages as modals.
+
+For the categories form, the only constraint is that the category id is not already there which will be isolated accordingly in the further development.
+To enter a proper Category one can enter an id value between 11-20 inclusive for example.
+Entering 0,1,2,5,6 or 9 as a category id will return an error message in the modal.
+
+For the subscriptions form, the constraints are to have a correct cat id (later will be done using drop-down of the categories), meaning 0,1,2,5,6,9 are valid and can be used to make a user subscription. Later we need an existing user id, in the database currently we users with ids of 1-4. Last (to be isolated in further development) is that the subscription id should be non-existing. Currently in our database we have subscriptions with ids 1-4.
+For example a proper insert would be:
+5,1,10
+Inputs like:
+6,5,10;
+7,4,20; 
+would yield an error.
