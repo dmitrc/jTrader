@@ -2,12 +2,13 @@
 
 include '../config.php';
 
-$id = $_POST['id'];
-$type = $_POST['type'];
-$subtype = $_POST['subtype'];
-$description = $_POST['description'];
+if (isset($_POST['type']) && isset($_POST['subtype']) && isset($_POST['id']) && isset($_POST['description'])) {
+	
+	$id = $_POST['id'];
+	$type = $_POST['type'];
+	$subtype = $_POST['subtype'];
+	$description = $_POST['description'];
 
-if (isset($_POST['type']) && isset($_POST['subtype'])) {
 	$sql="INSERT INTO Categories (ID, Type, Subtype, Description) VALUES ('$id', '$type', '$subtype', '$description')";
 	echo '<div class = "text-muted"><small><em>' . $sql . '</em></small></div>';
 
