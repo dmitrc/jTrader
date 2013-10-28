@@ -2,15 +2,18 @@
 
 include '../config.php';
 
-$sql="INSERT INTO Subscriptions (ID, UserID, CatID)
-VALUES
-('$_POST[id]','$_POST[userid]','$_POST[catid]')";
+$id = $_POST['id'];
+$uid = $_POST['userid'];
+$cid = $_POST['catid'];
+
+$sql="INSERT INTO Subscriptions (ID, UserID, CatID) VALUES ('$id', '$uid', '$cid')";
+echo '<div class = "text-muted"><small><em>' . $sql . '</em></small></div>';
 
 if (!mysqli_query($con,$sql))
   {
-  die('<h2>Error: ' . mysqli_error($con) . '</h2>');
+  die('<div class="lead text-danger"><strong>Error: </strong>' . mysqli_error($con) . '</div>');
   }
-echo "<h2> Record added </h2>";
+echo '<div class="lead text-success">Record added</div>';
 
 mysqli_close($con);
 

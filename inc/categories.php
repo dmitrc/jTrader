@@ -2,16 +2,22 @@
 
 include '../config.php';
 
-$sql="INSERT INTO Categories (ID, Type, Subtype, Description)
-VALUES
-('$_POST[id]','$_POST[type]','$_POST[subtype]','$_POST[description]')";
+$id = $_POST['id'];
+$type = $_POST['type'];
+$subtype = $_POST['subtype'];
+$description = $_POST['description'];
 
-if (!mysqli_query($con,$sql))
-  {
-  die('<h2>Error: ' . mysqli_error($con) . '</h2>');
-  }
-echo "<h2> Record added </h2>";
+if (isset($_POST['type']) && isset($_POST['subtype'])) {
+	$sql="INSERT INTO Categories (ID, Type, Subtype, Description) VALUES ('$id', '$type', '$subtype', '$description')";
+	echo '<div class = "text-muted"><small><em>' . $sql . '</em></small></div>';
 
-mysqli_close($con);
+	if (!mysqli_query($con,$sql))
+	  {
+	  die('<div class="lead text-danger"><strong>Error: </strong>' . mysqli_error($con) . '</div>');
+	  }
+	echo '<div class="lead text-success">Record added</div>';
+
+	mysqli_close($con);
+}
 
 ?>

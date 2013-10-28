@@ -58,7 +58,7 @@
         <label class="checkbox">
           <input type="checkbox" value="remember-me"> Remember me
         </label>
-        <div class="login_button btn btn-lg btn-primary btn-block">Sign in</button>
+        <div class="login_button btn btn-lg btn-primary btn-block">Sign in</div>
       </form>
 
     </div>
@@ -137,7 +137,6 @@
 <script type="text/javascript">
 	$(".login_button").click(function () {
 		var form_login = $("#form_name").val();
-		console.log(form_login); 
 		var form_pass = $("#form_pass").val(); 
 		$.post("/inc/login.php", { username : form_login , password : form_pass }, function(results){
 			$("#results-content").html(results);

@@ -48,8 +48,8 @@
 <div class="row">
 	<div class="container well well-lg">
 		<div class="col-lg-12 col-sm-12">
-			<p class="lead"><a href="categories.php">Insert form for categories</a></h3>
-			<p class="lead"><a href="subscriptions.php">Insert form for subscriptions</a></h3>
+			<p class="lead"><a data-toggle="modal" href="#cat-modal">Insert form for Categories</a></h3>
+			<p class="lead"><a data-toggle="modal" href="#subs-modal">Insert form for Subscriptions</a></h3>
 		</div>
 	</div>
 </div>
@@ -68,6 +68,21 @@
 
 <!-- Page ends. Modal windows code starts. -->
 
+<div class="modal fade" id="results-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	      <h4 class="modal-title">Results</h4>
+	    </div>
+	    <div class="modal-body">
+	      	<div id="results-content">
+	      	</div>
+	    </div>
+	  </div>
+	</div>
+</div>
+
 <div class="modal fade" id="contact-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 	  <div class="modal-content">
@@ -84,6 +99,7 @@
 	  </div>
 	</div>
 </div>
+
 
 <div class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
@@ -106,6 +122,139 @@
 	</div>
 </div>
 
-</body>
+<div class="modal fade" id="cat-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	      <h4 class="modal-title">Insert category</h4>
+	    </div>
+	    <div class="modal-body">
+	     	<div class="row cat-content">
+	      		<div class="container col-lg-6 col-sm-6 col-lg-offset-3 col-sm-offset-3">
+		      		<form class="form-horizontal" role="form">
+		      			<div class="form-group">
+						    <input type="text" class="form-control" id="form_cid" placeholder="Category ID">
+						</div>
+						<div class="form-group">
+						    <input type="text" class="form-control" id="form_ctype" placeholder="Category type">
+						</div>
+						<div class="form-group">
+						    <input type="text" class="form-control" id="form_csubtype" placeholder="Category subtype">
+						</div>
+						<div class="form-group">
+						    <input type="text" class="form-control" id="form_cdescription" placeholder="Description">
+						</div>
+						<div class="category_button btn btn-lg btn-primary btn-block">Submit</div>
+		      		</form>
+	      		</div>
+	      	</div> 	
+	    </div>
+	  </div>
+	</div>
+</div>
 
+<div class="modal fade" id="subs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	      <h4 class="modal-title">Insert subscription</h4>
+	    </div>
+	    <div class="modal-body">
+	      	<div class="row subs-content">
+	      		<div class="container col-lg-6 col-sm-6 col-lg-offset-3 col-sm-offset-3">
+		      		<form class="form-horizontal" role="form">
+		      			<div class="form-group">
+						    <input type="text" class="form-control" id="form_subid" placeholder="Subscription ID">
+						</div>
+						<div class="form-group">
+						    <input type="text" class="form-control" id="form_userid" placeholder="User ID">
+						</div>
+						<div class="form-group">
+						    <input type="text" class="form-control" id="form_catid" placeholder="Category ID">
+						</div>
+						<div class="subscription_button btn btn-lg btn-primary btn-block">Submit</div>
+		      		</form>
+	      		</div>
+	      	</div>
+	  </div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(".category_button").click(function () {
+		var cid = $("#form_cid").val();
+		var ctype = $("#form_ctype").val(); 
+		var csubtype = $("#form_csubtype").val(); 
+		var cdescription = $("#form_cdescription").val(); 
+		$.post("/inc/categories.php", { id : cid , type : ctype, subtype : csubtype, description : cdescription }, function(results) {
+			$('#cat-modal').modal('hide');
+			$('#results-content').html(results);
+			$('#results-modal').modal('show');
+		}); 
+	});
+
+	$(".subscription_button").click(function () {
+		var sid = $("#form_subid").val();
+		var cid = $("#form_catid").val(); 
+		var uid = $("#form_userid").val(); 
+		$.post("/inc/subscriptions.php", { id: sid, catid : cid, userid: uid }, function(results){
+			$('#subs-modal').modal('hide');
+			$("#results-content").html(results);
+			$('#results-modal').modal('show');
+		}); 
+	});
+
+	$('#form_cid').keydown(function(event){    
+	    if(event.keyCode==13){
+           $('.category_button').trigger('click');
+           return false;
+	    }
+	});
+
+	$('#form_ctype').keydown(function(event){    
+	    if(event.keyCode==13){
+           $('.category_button').trigger('click');
+           return false;
+	    }
+	});	
+
+	$('#form_csubtype').keydown(function(event){    
+	    if(event.keyCode==13){
+           $('.category_button').trigger('click');
+           return false;
+	    }
+	});
+
+	$('#form_cdescription').keydown(function(event){    
+	    if(event.keyCode==13){
+           $('.category_button').trigger('click');
+           return false;
+	    }
+	});
+   
+   	$('#form_cid').keydown(function(event){    
+	    if(event.keyCode==13){
+           $('.subscription_button').trigger('click');
+           return false;
+	    }
+	});
+
+	$('#form_ctype').keydown(function(event){    
+	    if(event.keyCode==13){
+           $('.subscription_button').trigger('click');
+           return false;
+	    }
+	});	
+
+	$('#form_csubtype').keydown(function(event){    
+	    if(event.keyCode==13){
+           $('.subscription_button').trigger('click');
+           return false;
+	    }
+	});
+</script>
+
+</body>
 </html>
