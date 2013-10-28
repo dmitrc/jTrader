@@ -2,7 +2,7 @@
 
 include '../config.php';
 
-if (isset($_POST['type']) && isset($_POST['subtype']) && isset($_POST['id']) && isset($_POST['description'])) {
+if ($_POST['type'] != '' && $_POST['subtype'] != '' && $_POST['id'] != '' && $_POST['description'] != '') {
 	
 	$id = $_POST['id'];
 	$type = $_POST['type'];
@@ -20,5 +20,7 @@ if (isset($_POST['type']) && isset($_POST['subtype']) && isset($_POST['id']) && 
 
 	mysqli_close($con);
 }
+else 
+	echo '<div class="lead text-danger"><strong>Error: One of the fields was not set.</strong>';
 
 ?>
