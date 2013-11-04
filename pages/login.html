@@ -1,0 +1,50 @@
+<!-- View -->
+
+<div class="row"><br/></div>
+<div class="row"><br/></div>
+
+<div class="row">
+	<div class="container col-lg-4 col-sm-6 col-lg-offset-4 col-sm-offset-3 well well-lg">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in with your CampusNet data:</h2>
+        <input type="text" class="form-control" id="form_name" placeholder="Username" autofocus>
+        <input type="password" class="form-control" id="form_pass" placeholder="Password">
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <div class="login_button btn btn-lg btn-primary btn-block">Sign in</div>
+      </form>
+
+    </div>
+</div>
+
+<div class="row"><br/></div>
+<div class="row"><br/></div>
+
+<!-- Scripts -->
+
+<script type="text/javascript">
+  $(".login_button").click(function () {
+    var form_login = $("#form_name").val();
+    var form_pass = $("#form_pass").val(); 
+    $.post("/inc/login.php", { username : form_login , password : form_pass }, function(results){
+      $("#results-content").html(results);
+      $('#results-modal').modal('show');
+    }); 
+  });
+
+  $('#form_name').keydown(function(event){    
+      if(event.keyCode==13){
+           $('.login_button').trigger('click');
+           return false;
+      }
+  });
+
+    $('#form_pass').keydown(function(event){    
+      if (event.keyCode==13){
+        $('.login_button').trigger('click');
+           return false;
+      }
+  });
+</script>
