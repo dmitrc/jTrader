@@ -8,7 +8,7 @@
 	
 	if (isset($_POST['timeLimit'])) {
 
-		$query = "SELECT id, closingtime FROM Auctions WHERE closingtime < NOW() + INTERVAL '".$_POST['timeLimit']."' HOUR;";
+		$query = "SELECT Offers.name, Auctions.id, Auctions.closingtime FROM Auctions, Offers WHERE Auctions.offerID = Offers.id AND Auctions.closingtime < NOW() + INTERVAL '".$_POST['timeLimit']."' HOUR;";
 		$result = mysqli_query($GLOBALS['db'],$query);
 
 		if (!$result) {
@@ -27,7 +27,7 @@
 			*/
 		
 			echo "<b><u>Results:</u></b><br/><br/>";
-			printResults($rows,array("id", "closingtime"),"id","detail1.php");
+			printResults($rows,array("name"),"id","detail1.php");
 		}
 	}
 

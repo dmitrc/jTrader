@@ -27,7 +27,7 @@
 			*/
 		
 			echo "<b><u>Results:</u></b><br/><br/>";
-			printResults($rows,array("name", "description"),"id","detail3.php");
+			printResults($rows,array("name"),"id","detail3.php");
 		}
 	}
 
