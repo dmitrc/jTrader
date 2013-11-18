@@ -6,9 +6,9 @@
 <?php
 	include_once('../../config.php');
 	
-	if (isset($_POST['fname']) && isset($_POST['college'])) {
+	if (isset($_POST['clearance'])) {
 
-		$query = "SELECT * FROM Users WHERE Users.fname LIKE '%".$_POST['fname']."%' AND Users.college = '".$_POST['college']."';";
+		$query = "SELECT * FROM Users, Admins WHERE Users.eid = Admins.eid AND Admins.clearanceLevel >= '".$_POST['clearance']."';";
 		$result = mysqli_query($GLOBALS['db'],$query);
 
 		if (!$result) {
@@ -27,28 +27,24 @@
 			*/
 		
 			echo "<b><u>Results:</u></b><br/><br/>";
-			printResults($rows,array("fname","lname"),"eid","detail1.php");
+			printResults($rows,array("fname","lname"),"eid","detail3.php");
 		}
 	}
 
 	else {
 		echo '
-			Retrieve information about user, given his first name and college:
+			Get full information about admins, with clearance level more than indicated:
 			<br/>
 			<br/>
-			<form name="query1" action="query1.php" method="post">
-			First name: <input type = "text" name = "fname"><br><br>
-			College:<br><input type="radio" name="college" value="K">Krupp<br>
-			<input type="radio" name="college" value="C">College III<br>
-			<input type="radio" name="college" value="N">Nordmetall<br>
-			<input type="radio" name="college" value="M">Mercator<br><br>
+			<form name="query3" action="query3.php" method="post">
+			Min clearance: <input type = "text" name = "clearance"><br><br>
 			<input type = "submit" value = "Search!">
 			</form>
 			<br/>
 			<br/>
 			<i><div style="color: DarkGray;"><u>Can be tested with following data:</u><br/>
-			First name: Nikolche<br/>
-			College: College III</div></i>
+			Min clearance: 5
+			</div></i>
 		';
 	}
 ?>
