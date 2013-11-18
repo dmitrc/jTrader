@@ -42,7 +42,9 @@
 			<br/>
 			<br/>
 			<i><div style="color: DarkGray;"><u>Can be tested with following data:</u><br/>
-			First name: phone<br/>
+			Offer Description: phone<br/></br>
+			Offer Description: vodka</br>
+
 			</div></i>
 		';
 	}
