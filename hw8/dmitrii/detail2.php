@@ -6,11 +6,11 @@
 <?php
 	include_once('../../config.php');
 
-	if (!isset($_GET['eid'])) {
+	if (!isset($_GET['id'])) {
 		die("No input parameters specified! :(");
 	}
 
-	$query = 'SELECT * FROM Users WHERE Users.eid = ' . $_GET['eid'];
+	$query = 'SELECT * FROM Offers WHERE Offers.id = ' . $_GET['id'];
 	$result = mysqli_query($GLOBALS['db'],$query);
 
 	if (!$result) {

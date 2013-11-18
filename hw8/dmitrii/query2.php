@@ -6,9 +6,9 @@
 <?php
 	include_once('../../config.php');
 	
-	if (isset($_POST['fname']) && isset($_POST['college'])) {
+	if (isset($_POST['item']) && isset($_POST['price'])) {
 
-		$query = "SELECT * FROM Users WHERE Users.fname LIKE '%".$_POST['fname']."%' AND Users.college = '".$_POST['college']."';";
+		$query = "SELECT Offers.* FROM Offers, FixedPriceOffers WHERE Offers.id = FixedPriceOffers.offerid AND Offers.name LIKE '%".$_POST['item']."%' AND FixedPriceOffers.price < '".$_POST['price']."';";
 		$result = mysqli_query($GLOBALS['db'],$query);
 
 		if (!$result) {
@@ -27,28 +27,25 @@
 			*/
 		
 			echo "<b><u>Results:</u></b><br/><br/>";
-			printResults($rows,array("fname","lname"),"eid","detail1.php");
+			printResults($rows,array("name"),"id","detail2.php");
 		}
 	}
 
 	else {
 		echo '
-			Retrieve information about user, given his first name and college:
+			Search fixed price offers with name containing some query and price, less than specified:
 			<br/>
 			<br/>
-			<form name="query1" action="query1.php" method="post">
-			First name: <input type = "text" name = "fname"><br><br>
-			College:<br><input type="radio" name="college" value="K">Krupp<br>
-			<input type="radio" name="college" value="C">College III<br>
-			<input type="radio" name="college" value="N">Nordmetall<br>
-			<input type="radio" name="college" value="M">Mercator<br><br>
+			<form name="query2" action="query2.php" method="post">
+			Item: <input type = "text" name = "item"><br>
+			Max price: <input type = "text" name = "price"><br><br>
 			<input type = "submit" value = "Search!">
 			</form>
 			<br/>
 			<br/>
 			<i><div style="color: DarkGray;"><u>Can be tested with following data:</u><br/>
-			First name: Nikolche<br/>
-			College: College III</div></i>
+			Item: Xperia<br/>
+			Max price: 9999</div></i>
 		';
 	}
 ?>
