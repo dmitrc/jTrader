@@ -10,7 +10,7 @@
 		die("No input parameters specified! :(");
 	}
 
-	$query = 'SELECT * FROM Users WHERE Users.eid = ' . $_GET['eid'];
+	$query = 'SELECT Users.*, Admins.aid, Admins.clearanceLevel FROM Users, Admins WHERE Admins.eid = Users.eid AND Users.eid = ' . $_GET['eid'];
 	$result = mysqli_query($GLOBALS['db'],$query);
 
 	if (!$result) {

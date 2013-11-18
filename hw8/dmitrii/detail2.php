@@ -10,7 +10,7 @@
 		die("No input parameters specified! :(");
 	}
 
-	$query = 'SELECT * FROM Offers WHERE Offers.id = ' . $_GET['id'];
+	$query = 'SELECT Offers.*, FixedPriceOffers.price FROM Offers, FixedPriceOffers WHERE FixedPriceOffers.offerid = Offers.id AND Offers.id = ' . $_GET['id'];
 	$result = mysqli_query($GLOBALS['db'],$query);
 
 	if (!$result) {

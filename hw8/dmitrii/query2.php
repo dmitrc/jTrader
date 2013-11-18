@@ -33,7 +33,7 @@
 
 	else {
 		echo '
-			Search fixed price offers with name containing some query and price, less than specified:
+			Search fixed price offers with name containing some text and price, less than specified:
 			<br/>
 			<br/>
 			<form name="query2" action="query2.php" method="post">
