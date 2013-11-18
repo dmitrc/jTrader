@@ -35,7 +35,7 @@ WHERE Users.fname LIKE '%".$_POST['fname']."%' AND Users.lname LIKE '%".$_POST['
 
 	else {
 		echo '
-			Retrieve information about user, given his first name and college:
+			Retrieve information about user\'s posted offers, provided his name and surname:
 			<br/>
 			<br/>
 			<form name="query1" action="query1.php" method="post">
@@ -47,10 +47,10 @@ WHERE Users.fname LIKE '%".$_POST['fname']."%' AND Users.lname LIKE '%".$_POST['
 			<br/>
 			<i><div style="color: DarkGray;"><u>Can be tested with following data:</u><br/>
 			First name: Nikolche<br/>
-			Last Name: Kolev <br/>
+			Last name: Kolev <br/>
 			<br>
-			First Name: Andrei <br/>
-			Last Name: Gi </br>
+			First name: Andrei <br/>
+			Last name: Gi </br>
 			</div></i>
 		';
 	}

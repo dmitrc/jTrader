@@ -6,10 +6,9 @@
 <?php
 	include_once('../../config.php');
 	
-	if (isset($_POST['type']) ) {
+	if (isset($_POST['description'])) {
 
-		$query = "SELECT Offers.* FROM Offers,Categories
-		WHERE (Categories.type LIKE '%".$_POST['type']."%' OR Categories.subtype LIKE '%".$_POST['type']."%') AND Offers.catID = Categories.id;";
+		$query = "SELECT Offers.name, FixedPriceOffers.id as FPOID, FixedPriceOffers.price AS FPOprice FROM Offers,FixedPriceOffers WHERE Offers.name LIKE '%".$_POST['description']."%' AND FixedPriceOffers.offerID = Offers.id ;";
 		$result = mysqli_query($GLOBALS['db'],$query);
 
 		if (!$result) {
@@ -20,7 +19,6 @@
 			while($r = mysqli_fetch_assoc($result)) {
     			$rows[] = $r;
 			}
-
 			/*
 			echo "<b><u>Raw:</u></b> <br/>";
 			var_export($rows);
@@ -28,26 +26,23 @@
 			*/
 		
 			echo "<b><u>Results:</u></b><br/><br/>";
-			printResults($rows,array("name"),"id","detail2.php");
+			printResults($rows,array("name","FPOprice"),"FPOID","detail3.php");
 		}
 	}
 
 	else {
 		echo '
-			Retrieve information about all offers provided a category description:
+			Retrieve information about bids from a specific user:
 			<br/>
 			<br/>
-			<form name="query2" action="query2.php" method="post">
-			Category description <input type = "text" name = "type"><br><br>
+			<form name="query3" action="query3.php" method="post">
+			Offer description: <input type = "text" name = "description"><br><br>
 			<input type = "submit" value = "Search!">
 			</form>
 			<br/>
 			<br/>
 			<i><div style="color: DarkGray;"><u>Can be tested with following data:</u><br/>
-			Category description: Electronics<br/>
-			<br>
-			Category description: Consumables<br/>
-
+			First name: phone<br/>
 			</div></i>
 		';
 	}
