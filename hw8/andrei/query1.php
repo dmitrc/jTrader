@@ -33,7 +33,7 @@
 
 	else {
 		echo '
-			Retrieve auctions from a category where the minimum price is smaller than the input value:
+			Retrieve auctions where the closing time is within a certain amount of time:
 			<br/>
 			<br/>
 			<form name="query1" action="query1.php" method="post">
