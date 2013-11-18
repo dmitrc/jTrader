@@ -11,15 +11,14 @@
 
 	function dbConnect($user, $pass, $name, $host){
 
-  	$mysqli = new mysqli($host, $user, $pass, $name);
+  	$db = mysqli_connect($host, $user, $pass, $name);
     
     /* check connection */
     if (mysqli_connect_errno()) {
-        printf("Connect failed: %s\n", mysqli_connect_error());
-        exit();
+        die("Connect failed: " . mysqli_connect_error());
     }
 
-    return $mysqli;
+    return $db;
   }
 
 ?>
