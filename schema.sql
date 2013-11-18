@@ -14,7 +14,7 @@
 -- Table structure for table `Admins`
 --
 CREATE TABLE IF NOT EXISTS `Admins` (
-  `aid` int(11) NOT NULL,
+  `aid` int(11) NOT NULL AUTO_INCREMENT,
   `eid` int(11) NOT NULL,
   `clearanceLevel` int(11) NOT NULL,
   PRIMARY KEY (`aid`),
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `Admins` (
 -- Table structure for table `AuctionBids`
 --
 CREATE TABLE IF NOT EXISTS `AuctionBids` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `buyerid` int(11) NOT NULL,
   `offerid` int(11) NOT NULL,
   `offerValue` decimal(10,2) NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `AuctionBids` (
 -- Table structure for table `Auctions`
 --
 CREATE TABLE IF NOT EXISTS `Auctions` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `offerid` int(11) NOT NULL,
   `minprice` decimal(10,2) NOT NULL,
   `currentHighestBid` int(11) NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `Auctions` (
 -- Table structure for table `Categories`
 --
 CREATE TABLE IF NOT EXISTS `Categories` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(48) NOT NULL,
   `subtype` varchar(48) NOT NULL,
   `description` text NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `Categories` (
 -- Table structure for table `FixedPriceBids`
 --
 CREATE TABLE IF NOT EXISTS `FixedPriceBids` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `buyerid` int(11) NOT NULL,
   `fixedPriceOfferID` int(11) NOT NULL,
   `bidtime` datetime NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `FixedPriceBids` (
 -- Table structure for table `FixedPriceOffers`
 --
 CREATE TABLE IF NOT EXISTS `FixedPriceOffers` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `offerid` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`),
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `FixedPriceOffers` (
 -- Table structure for table `OfferRequests`
 --
 CREATE TABLE IF NOT EXISTS `OfferRequests` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) NOT NULL,
   `catid` int(11) NOT NULL,
   `description` text NOT NULL,
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `OfferRequests` (
 -- Table structure for table `Offers`
 --
 CREATE TABLE IF NOT EXISTS `Offers` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) NOT NULL,
   `catid` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `Offers` (
 -- Table structure for table `Subscriptions`
 --
 CREATE TABLE IF NOT EXISTS `Subscriptions` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) NOT NULL,
   `catid` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `Subscriptions` (
 -- Table structure for table `Users`
 --
 CREATE TABLE IF NOT EXISTS `Users` (
-  `eid` int(11) NOT NULL,
+  `eid` int(11) NOT NULL AUTO_INCREMENT,
   `fname` varchar(32) NOT NULL,
   `lname` varchar(32) NOT NULL,
   `roomPhone` int(4) NOT NULL,
