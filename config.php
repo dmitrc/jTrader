@@ -7,7 +7,7 @@
 
   define( 'TABLE_USER', 'Users' );
 
-	$con = dbConnect( DB_USER, DB_PASS, DB_NAME, DB_HOST );
+	$GLOBALS['db'] = dbConnect( DB_USER, DB_PASS, DB_NAME, DB_HOST );
 
 	function dbConnect($user, $pass, $name, $host){
 
