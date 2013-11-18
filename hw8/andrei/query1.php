@@ -6,9 +6,9 @@
 <?php
 	include_once('../../config.php');
 	
-	if (isset($_POST['category']) && isset($_POST['minPrice'])) {
+	if (isset($_POST['timeLimit'])) {
 
-		$query = "SELECT * FROM Auctions, Offers, Categories  WHERE Auctions.minPrice < '".$_POST['minPrice']."' AND Auctions.offerid = Offers.id AND Offers.catid = Categories.id AND Categories.type LIKE '%".$_POST['category']."%';";
+		$query = "SELECT id, closingtime FROM Auctions WHERE closingtime < NOW() + INTERVAL '".$_POST['timeLimit']."' HOUR;";
 		$result = mysqli_query($GLOBALS['db'],$query);
 
 		if (!$result) {
@@ -27,7 +27,7 @@
 			*/
 		
 			echo "<b><u>Results:</u></b><br/><br/>";
-			printResults($rows,array("type", "name"),"id","detail2.php");
+			printResults($rows,array("id", "closingtime"),"id","detail1.php");
 		}
 	}
 
@@ -36,16 +36,14 @@
 			Retrieve auctions from a category where the minimum price is smaller than the input value:
 			<br/>
 			<br/>
-			<form name="query2" action="query2.php" method="post">
-			Category: <input type = "text" name = "category"><br><br>
-			Minimum price: <input type = "text" name = "minPrice"><br><br>
+			<form name="query1" action="query1.php" method="post">
+			Time Limit: <input type = "text" name = "timeLimit"><br><br>
 			<input type = "submit" value = "Search!">
 			</form>
 			<br/>
 			<br/>
-			<i><div style="color: DarkGray;"><u>Can be tested with following data:</u><br/>
-			Category: Electronics<br/>
-			Minimum price: 500<br/>
+			<i><div style="color: DarkGray;"><u>Can be tested with following data - expired auctions are returned if database is not cleaned:</u><br/>
+			Time Limit: 1<br/>
 		';
 	}
 ?>

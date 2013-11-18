@@ -10,7 +10,7 @@
 		die("No input parameters specified! :(");
 	}
 
-	$query = 'SELECT Auctions.minPrice, Offers.name, Offers.description, Offers.postTime FROM Auctions, Offers WHERE Offers.id = Auctions.offerid AND Auctions.id = ' . $_GET['id'];
+	$query = 'SELECT Offers.*, FixedPriceOffers.price FROM Offers, FixedPriceOffers WHERE FixedPriceOffers.offerid = Offers.id AND Offers.id = ' . $_GET['id'];
 	$result = mysqli_query($GLOBALS['db'],$query);
 
 	if (!$result) {
