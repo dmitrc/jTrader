@@ -138,7 +138,7 @@
 									<img src="images/'. $obj['picturePath'] .'" alt="'.$obj['name'].'" class="img-responsive img-rounded" width=100/>
 									<div class="textcenter">
 										<a href="item.php?id='.$obj['id'].'"><h5>'. $obj['name'] .'</h5></a>
-										<p>'.$obj['price'].'</p>
+										<p class="text-success">'.$obj['price'].' &euro;</p>
 									</div>
 								</div>';
 							}
@@ -160,7 +160,7 @@
 									<img src="images/'. $obj['picturePath'] .'" alt="'.$obj['name'].'" class="img-responsive img-rounded" width=100/>
 									<div class="textcenter">
 										<a href="item.php?id='.$obj['id'].'"><h5>'. $obj['name'] .'</h5></a>
-										<p>'.$obj['price'].'</p>
+										<p class="text-success">'.$obj['price'].' &euro;</p>
 									</div>
 								</div>';
 							}
