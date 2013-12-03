@@ -54,19 +54,22 @@
 		<br/>
 		<p class="lead">Add new item:</p>
 		<br/>
+
 		<form class="form-horizontal" role="form">
 		  <div class="form-group">
 		    <label for="form_name" class="col-sm-2 col-md-2 col-lg2 control-label">Name</label>
 		    <div class="col-sm-10 col-lg-10 col-md-10">
-		      <input type="email" class="form-control" id="form_name">
+		      <input type="text" class="form-control" id="form_name">
 		    </div>
 		  </div>
+
 		  <div class="form-group">
 		    <label for="form_description" class="col-sm-2 control-label">Description</label>
 		    <div class="col-sm-10 col-lg-10 col-md-10">
 		      <textarea class="form-control" id="form_description" rows="5"></textarea>
 		    </div>
 		  </div>
+
 		  <div class="form-group">
 			<label for="form_category" class="col-sm-2 control-label">Category</label>
 		    <div class="col-sm-10 col-lg-10 col-md-10">
@@ -79,13 +82,32 @@
 				</select> 
 		    </div>
 		  </div>
+
+
+		  <div class="form-group">
+		    <label for="form_price" class="col-sm-2 col-md-2 col-lg2 control-label">Price</label>
+		    <div class="col-sm-6 col-lg-6 col-md-6">
+		      <input type="text" class="form-control" id="form_price">
+		    </div>
+		  </div>
+
+		  <div class="form-group">
+		  	<label for="form_image" class="col-sm-2 control-label">Image</label>
+		    <div class="col-sm-10 col-lg-10 col-md-10">
+				<input type="file" id="form_image" name="form_image"/>
+				<div id="image_preview"></div>
+		    </div>
+		  </div>
+
 		  <br/>
+		  <br/>
+
 		  <div class="form-group">
 		    <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-2 col-sm-4 col-lg-4 col-md-4">
-		      <button type="submit" id="form_cancel" class="btn btn-default btn-block">Cancel</button>
+		      <div class="btn btn-default btn-block">Cancel</div>
 		    </div>
 		    <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-2 col-sm-4 col-lg-4 col-md-4">
-		    	<button type="submit" id="form_submit" class="btn btn-success btn-block">Submit!</button>
+		    	<div class="btn btn-success btn-block">Submit!</div>
 		    </div>
 		  </div>
 </form>
@@ -161,5 +183,37 @@
 	</div>
 </div>
 
+<script>
+	function handleFileSelect(evt) {
+
+	    var files = evt.target.files; // FileList object
+
+	    // Loop through the FileList and render image files as thumbnails.
+	    for (var i = 0, f; f = files[i]; i++) {
+
+	      // Only process image files.
+	      if (!f.type.match('image.*')) {
+	        continue;
+	      }
+
+	      var reader = new FileReader();
+
+	      // Closure to capture the file information.
+	      reader.onload = (function(theFile) {
+	        return function(e) {
+	          // Render thumbnail.
+	          console.log(e.target.result);
+	          document.getElementById('image_preview').innerHTML = ['<br/><div class="container well"><img class="img-responsive img-rounded center" src="', e.target.result,'" title="', escape(theFile.name), '"/></div>'].join('');
+	        };
+	      })(f);
+
+	      // Read in the image file as a data URL.
+	      reader.readAsDataURL(f);
+	    }
+  }
+
+  document.getElementById('form_image').addEventListener('change', handleFileSelect, false);
+</script>
+</script?
 </body>
 </html>

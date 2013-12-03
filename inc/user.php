@@ -1,6 +1,7 @@
 <?php
 
-	include_once(dirname(__FILE__).'/../config.php');
+    session_start();
+	require_once(dirname(__FILE__).'/../config.php');
 
 	class User {
 		var $eid;
@@ -86,13 +87,13 @@
 
     function isLoggedIn() 
     {
-      if (isset($_SESSION))
+      if (isset($_SESSION["user"]))
       {
-        echo $_SESSION["user"]->account;
+        return $_SESSION["user"]->fname." ".$_SESSION["user"]->lname;
       }
       else
       {
-        echo "false";
+        return false;
       }
     }
 
@@ -126,7 +127,9 @@
 
     function getUserItems()
     {
-        $query = "SELECT Offers.id, Offers.name, Offers.picturePath, FixedPriceOffers.price FROM Offers, FixedPriceOffers WHERE Offers.userid = 1 AND Offers.id = FixedPriceOffers.offerid;";
+        $eid = $_SESSION["user"]->eid;
+
+        $query = "SELECT Offers.id, Offers.name, Offers.picturePath, FixedPriceOffers.price FROM Offers, FixedPriceOffers WHERE Offers.userid = $eid AND Offers.id = FixedPriceOffers.offerid;";
         $result = mysqli_query($GLOBALS['db'], $query);
 
         if ($result) 
