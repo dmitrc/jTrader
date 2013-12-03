@@ -88,11 +88,11 @@
     {
       if (isset($_SESSION))
       {
-        return 'true';
+        return $_SESSION["user"]->account;
       }
       else
       {
-        return "false";
+        return false;
       }
     }
 
