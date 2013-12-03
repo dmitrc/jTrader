@@ -17,7 +17,7 @@
         {
             $account = $_SESSION["user"]->account;
 
-            $query = "SELECT name FROM Users WHERE name == $account;";
+            $query = "SELECT name FROM Users WHERE name = $account;";
             $result = mysqli_query($GLOBALS['db'], $query);
 
             if (!$result) 
@@ -126,7 +126,7 @@
 
     function getUserItems()
     {
-        $query = "SELECT Offers.id, Offers.name, Offers.picturePath, FixedPriceOffers.price FROM Offers, FixedPriceOffers WHERE Offers.userid == 1 AND Offers.id == FixedPriceOffers.offerid;";
+        $query = "SELECT Offers.id, Offers.name, Offers.picturePath, FixedPriceOffers.price FROM Offers, FixedPriceOffers WHERE Offers.userid = 1 AND Offers.id = FixedPriceOffers.offerid;";
         $result = mysqli_query($GLOBALS['db'], $query);
 
         if ($result) 
