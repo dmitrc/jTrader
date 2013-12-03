@@ -8,7 +8,7 @@
         $name = $_SESSION["user"]->account;
         $subject = "jTrade Purchase Request";
         $to = '';
-        $query = "SELECT email FROM Users WHERE id = $idTo;";
+        $query = "SELECT email FROM Users WHERE eid = $idTo;";
         $result = mysqli_query($GLOBALS['db'], $query);
         $url = 'http://dcode.tk/php/jtrade.php';
 
@@ -55,7 +55,7 @@
 
             var_dump($result);
 
-            $query = "UPDATE Users SET rating=(rating+1) WHERE email = $to;";
+            $query = "UPDATE Users SET rating=(rating+1) WHERE $idTo = eid;";
             mysqli_query($GLOBALS['db'], $query);
         }
         else
