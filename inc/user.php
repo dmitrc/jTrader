@@ -1,6 +1,6 @@
 <?php
 
-	include_once(dirname(__FILE__).'/../config.php');
+	require_once(dirname(__FILE__).'/../config.php');
 
 	class User {
 		var $eid;
@@ -88,11 +88,11 @@
     {
       if (isset($_SESSION))
       {
-        echo 'true';
+        return 'true';
       }
       else
       {
-        echo "false";
+        return "false";
       }
     }
 
