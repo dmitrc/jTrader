@@ -25,6 +25,18 @@
           logout();
         }
 
+        else if ($_POST['action'] == 'isLoggedIn')
+        {
+          if (isLoggedIn())
+          {
+            echo $_SESSION["user"]->name;
+          }
+          else
+          {
+            echo "<no>";
+          }
+        }
+
         else
         {
           echo '<div class="lead text-danger">Unrecognized arguments for login action!</div>'; 
@@ -35,6 +47,5 @@
         echo '<div class="lead text-danger">Unrecognized action!</div>';
       }
     }
-
 
 ?>
