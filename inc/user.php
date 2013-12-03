@@ -4,22 +4,20 @@
 
 	class User {
 		var $eid;
-		var $employeetype;
 		var $account;
 		var $fname;
 		var $lname;
-		var $displayname;
-		var $name;
 		var $college;
 		var $email;
 		var $room; // to be parsed
 		var $phone;
+        var $rating;
 
 		function writeToDb() 
         {
-            $name = $_SESSION["user"]->accountname;
+            $account = $_SESSION["user"]->accountname;
 
-            $query = "SELECT name FROM Users WHERE name == $name;";
+            $query = "SELECT name FROM Users WHERE name == $account;";
             $result = mysqli_query($GLOBALS['db'], $query);
 
             if (!$result) 
@@ -28,12 +26,12 @@
                 $fname = $_SESSION["user"]->fname;
                 $lname = $_SESSION["user"]->lname;
                 $college = $_SESSION["user"]->college;
-                $roomPhone = $_POST['user']->phone;
-                $roomNumber = $_POST['user']->room;
-                $email = $_POST['description']->email;
+                $roomPhone = $_SESSION['user']->phone;
+                $roomNumber = $_SESSION['user']->room;
+                $email = $_SESSION['user']->email;
                 $rating = 0;
 
-                $sql="INSERT INTO Users (eid, name, fname, lname, roomPhone, roomNumber, college, email, rating) VALUES ('$eid', '$name', '$fname', '$lname','$roomPhone '$roomNumber', '$college', '$email', '$rating')";
+                $sql="INSERT INTO Users (eid, name, fname, lname, roomPhone, roomNumber, college, email, rating) VALUES ('$eid', '$account', '$fname', '$lname','$roomPhone '$roomNumber', '$college', '$email', '$rating')";
                 echo '<div class = "text-muted"><small><em>' . $sql . '</em></small></div>';
 
                 if (!mysqli_query($con,$sql))
@@ -68,13 +66,9 @@
         $user = new User();
 
         $user->eid = htmlentities(utf8_encode($r[0]['employeeid'][0]),ENT_COMPAT,'utf-8');
-        $user->employeetype = htmlentities(utf8_encode($r[0]['company'][0]),ENT_COMPAT,'utf-8');
         $user->account = htmlentities(utf8_encode($r[0]['samaccountname'][0]),ENT_COMPAT,'utf-8');
-        $user->attributes = htmlentities(utf8_encode($r[0]['employeetype'][0]),ENT_COMPAT,'utf-8');
         $user->fname = htmlentities(utf8_encode($r[0]['givenname'][0]),ENT_COMPAT,'utf-8');
         $user->lname = htmlentities(utf8_encode($r[0]['sn'][0]),ENT_COMPAT,'utf-8');
-        $user->displayname = htmlentities(utf8_encode($r[0]['displayname'][0]),ENT_COMPAT,'utf-8');
-        $user->name = htmlentities(utf8_encode($r[0]['name'][0]),ENT_COMPAT,'utf-8');
         $user->college = htmlentities(utf8_encode($r[0]['houseidentifier'][0]),ENT_COMPAT,'utf-8');
         $user->country = htmlentities(utf8_encode($r[0]['extensionattribute5'][0]),ENT_COMPAT,'utf-8');
         $user->email = htmlentities(utf8_encode($r[0]['mail'][0]),ENT_COMPAT,'utf-8');
@@ -104,6 +98,34 @@
       {
         echo "no";
       }
+    }
+
+    function getUserInfo($eid)
+    {
+        $name = $_SESSION["user"]->accountname;
+        $eid = $_SESSION["user"]->eid;
+        $fname = $_SESSION["user"]->fname;
+        $lname = $_SESSION["user"]->lname;
+        $college = $_SESSION["user"]->college;
+        $roomPhone = $_SESSION['user']->phone;
+        $roomNumber = $_SESSION['user']->room;
+        $email = $_SESSION['user']->email;
+        $rating = $_SESSION['user']->rating;
+
+        $obj = array(
+            'name': $name,
+            'eid' : $eid,
+            'fname' : $fname,
+            'lname' : $lname,
+            'college' : $college,
+            'roomPhone' : $roomPhone,
+            'roomNumber' : $roomNumber,
+            'email' : $email,
+            'rating' : $rating
+        );
+
+        $jsonstring = json_encode($obj);
+        echo $jsonstring;
     }
 
 ?>
