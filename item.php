@@ -111,7 +111,17 @@
 					<div class="container col-lg-6 col-sm-6 col-md-6">
 						<p class="lead text-success"><?php echo $item['price']; ?> &euro;</p>
 					</div>
-					<button type="button" class="btn btn-primary btn-lg btn-block">Buy now!</button>
+
+					<div class="container">
+					<?php
+					if (isLoggedIn()) {
+					 	echo '<div id="buy_button" class="btn btn-primary btn-lg btn-block">Buy now!</div>';
+					}
+					else {
+						echo '<div id="login_button" class="btn btn-info btn-lg btn-block">Login to buy...</div>';	
+					}
+					?>
+					</div>
 				</div>
 		</div>
 	</div>
@@ -189,11 +199,16 @@
 <!-- Scripts -->
 
 <script>
- $("#logout").click(function () {
-    $.post("inc/api.php", { action:'logout'}, function(results){
-          	window.location.reload(true);
-    });
-  });
+	 $("#logout").click(function () {
+	    $.post("inc/api.php", { action:'logout'}, function(results){
+	          	window.location.reload(true);
+	    });
+	  });
+
+	$("#login_button").click(function () {
+	    window.location.href = "login.php";
+	 });
+ 
 </script>
 
 </body>

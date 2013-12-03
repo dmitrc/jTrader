@@ -32,7 +32,7 @@
 		    <span class="icon-bar"></span>
 		    <span class="icon-bar"></span>
 		   	</button>
-			<a href="index.html" class="navbar-brand">jTrader</a>
+			<a href="index.php" class="navbar-brand">jTrader</a>
 		</div>
 		<div class="navbar-collapse collapse navbar-ex1-collapse">
 			<ul class="navbar-nav nav">
