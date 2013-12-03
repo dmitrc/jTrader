@@ -1,3 +1,9 @@
+<?php
+	error_reporting(0);
+	require_once(dirname(__FILE__).'/./inc/user.php');
+	session_start(); 
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,13 +47,29 @@
 				<li class="active"><a href="index.php">Home</a></li>
 				<li><a data-toggle="modal" href="#about-modal">About</a></li>
 				<li><a data-toggle="modal" href="#contact-modal">Contact</a></li>
-				<li><a href="login.php">Login</a></li>
+				<?php
+					$username = isLoggedIn();
+					if (!$username) {
+						echo '<li><a href="login.php">Login</a></li>';
+					}
+					else {
+						echo '<li><a href="add_item.php">Add item</a></li>';
+						echo '<li><a href="#" id="logout">Logout &nbsp;&nbsp;<em>('.$username.')</em></a></li>';
+					}
+				?>
 			</ul>
 		</div>
 	</div>
 </nav>
 
 <!-- Main -->
+
+<?php
+	if (!$_SESSION["user"]) {
+		echo '<div class="row"><div class = "container well"><br/><p class = "lead text-danger textcenter">Please, <a href="login.php">login</a> with your CampusNet account to add new items!</p></div></div>';
+		exit();
+	}
+?>
 
 <div class="row">
 	<div class="container col-sm-offset-3 col-sm-offset-3 col-sm-offset-3 col-sm-6 col-md-6 col-lg-6">
@@ -182,6 +204,16 @@
 	  </div>
 	</div>
 </div>
+
+<!-- Scripts -->
+
+<script>
+ $("#logout").click(function () {
+    $.post("inc/api.php", { action:'logout'}, function(results){
+          	window.location.reload(true);
+    });
+  });
+</script>
 
 <script>
 	function handleFileSelect(evt) {

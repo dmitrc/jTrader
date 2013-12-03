@@ -56,7 +56,7 @@
 		}
 	}
 	
-	function getInfo($ID){
+	function getOfferInfo($ID){
 		$initialInfoQuery = "SELECT id, userid,catid,name,description,postTime, picturePath FROM Offers WHERE id = $ID;";
 		
 		$initialResult = mysqli_query($GLOBALS['db'],$initialInfoQuery);
@@ -116,9 +116,9 @@
 
 		$price = $fpoRows[0]['price'];
 
-		$arr = array( 'author'  => $author, 'name' => $name, 'description' => $description, 'time' => $time , 'pic' => $pic, 'category' => $category,'subcategory' =>  $subcategory, 'price' => $price );
+		$arr = array( 'author'  => $author, 'name' => $name, 'description' => $description, 'time' => $time , 'picturePath' => $pic, 'category' => $category,'subcategory' =>  $subcategory, 'price' => $price );
 
-		return json_encode($arr);
+		return $arr;
 	}
 
 
@@ -180,7 +180,7 @@
 
 		foreach($rows as $row){
 			if($row['buyerid']!=$buyerid){
-				echo "send e-mail to the suckers"
+				echo "send e-mail to the suckers";
 			} else {
 				echo "send e-mail to winner";
 			}
@@ -196,7 +196,6 @@
 		}
 	}
 
-	
 
 	function allBuyers($offerID){
 
@@ -234,7 +233,7 @@
 	}
 
 	function recentOffers(){
-		$query = 'SELECT FixedPriceOffers.price, Offers.picturePath, Offers.name
+		$query = 'SELECT FixedPriceOffers.price, Offers.picturePath, Offers.name, Offers.id
 		FROM FixedPriceOffers, Offers
 		WHERE Offers.id = FixedPriceOffers.offerid
 		ORDER BY Offers.postTime DESC 
@@ -248,11 +247,12 @@
 		while($r = mysqli_fetch_assoc($result)){
 			$rows[] = $r;
 		}
-		echo json_encode($rows);
+
+		return $rows;
 	}
 
 	function hotOffers(){
-		$query = 'SELECT FixedPriceOffers.price, Offers.picturePath, Offers.name
+		$query = 'SELECT FixedPriceOffers.price, Offers.picturePath, Offers.name, Offers.id
 		FROM FixedPriceOffers, Offers
 		WHERE Offers.id = FixedPriceOffers.offerid
 		LIMIT 4';
@@ -265,7 +265,8 @@
 		while($r = mysqli_fetch_assoc($result)){
 			$rows[] = $r;
 		}
-		echo json_encode($rows);
+
+		return $rows;
 	}
 
 

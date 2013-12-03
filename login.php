@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php
+	error_reporting(0);
+	require_once(dirname(__FILE__).'/./inc/user.php');
+	session_start(); 
+?>
 
 <!DOCTYPE html>
 <html>
@@ -43,7 +47,16 @@
 				<li class="active"><a href="index.php">Home</a></li>
 				<li><a data-toggle="modal" href="#about-modal">About</a></li>
 				<li><a data-toggle="modal" href="#contact-modal">Contact</a></li>
-				<li><a href="login.php">Login</a></li>
+				<?php
+					$username = isLoggedIn();
+					if (!$username) {
+						echo '<li><a href="login.php">Login</a></li>';
+					}
+					else {
+						echo '<li><a href="add_item.php">Add item</a></li>';
+						echo '<li><a href="#" id="logout">Logout &nbsp;&nbsp;<em>('.$username.')</em></a></li>';
+					}
+				?>
 			</ul>
 		</div>
 	</div>
@@ -72,38 +85,6 @@
 
 <div class="row"><br/></div>
 <div class="row"><br/></div>
-
-<!-- Scripts -->
-
-<script type="text/javascript">
-  $(".login_button").click(function () {
-    var form_login = $("#form_name").val();
-    var form_pass = $("#form_pass").val(); 
-    $.post("inc/api.php", { action:'login', args:[form_login,form_pass]}, function(results){
-      if (results != "true") {
-      	$("#results-content").html(results);
-      	$('#results-modal').modal('show');
-      }
-      else {
-      	window.location.href = "index.php";
-      }
-    });
-  });
-
-  $('#form_name').keydown(function(event){    
-      if(event.keyCode==13){
-           $('.login_button').trigger('click');
-           return false;
-      }
-  });
-
-    $('#form_pass').keydown(function(event){    
-      if (event.keyCode==13){
-        $('.login_button').trigger('click');
-           return false;
-      }
-  });
-</script>
 
 <!-- Footer -->
 
@@ -173,6 +154,46 @@
 	  </div>
 	</div>
 </div>
+
+<!-- Scripts -->
+
+<script>
+ $("#logout").click(function () {
+    $.post("inc/api.php", { action:'logout'}, function(results){
+          	window.location.reload(true);
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  $(".login_button").click(function () {
+    var form_login = $("#form_name").val();
+    var form_pass = $("#form_pass").val(); 
+    $.post("inc/api.php", { action:'login', args:[form_login,form_pass]}, function(results){
+      if (results != "true") {
+      	$("#results-content").html(results);
+      	$('#results-modal').modal('show');
+      }
+      else {
+      	window.location.href = "index.php";
+      }
+    });
+  });
+
+  $('#form_name').keydown(function(event){    
+      if(event.keyCode==13){
+           $('.login_button').trigger('click');
+           return false;
+      }
+  });
+
+    $('#form_pass').keydown(function(event){    
+      if (event.keyCode==13){
+        $('.login_button').trigger('click');
+           return false;
+      }
+  });
+</script>
 
 </body>
 </html>

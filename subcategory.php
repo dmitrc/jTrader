@@ -1,3 +1,9 @@
+<?php
+	error_reporting(0);
+	require_once(dirname(__FILE__).'/./inc/user.php');
+	session_start(); 
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +47,16 @@
 				<li class="active"><a href="index.php">Home</a></li>
 				<li><a data-toggle="modal" href="#about-modal">About</a></li>
 				<li><a data-toggle="modal" href="#contact-modal">Contact</a></li>
-				<li><a href="login.php">Login</a></li>
+				<?php
+					$username = isLoggedIn();
+					if (!$username) {
+						echo '<li><a href="login.php">Login</a></li>';
+					}
+					else {
+						echo '<li><a href="add_item.php">Add item</a></li>';
+						echo '<li><a href="#" id="logout">Logout &nbsp;&nbsp;<em>('.$username.')</em></a></li>';
+					}
+				?>
 			</ul>
 		</div>
 	</div>
@@ -229,6 +244,16 @@
 	  </div>
 	</div>
 </div>
+
+<!-- Scripts -->
+
+<script>
+ $("#logout").click(function () {
+    $.post("inc/api.php", { action:'logout'}, function(results){
+          	window.location.reload(true);
+    });
+  });
+</script>
 
 </body>
 </html>

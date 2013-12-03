@@ -1,3 +1,10 @@
+<?php
+	error_reporting(0);
+	require_once(dirname(__FILE__).'/./inc/user.php');
+	require_once(dirname(__FILE__).'/./inc/offer.php');
+	session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +48,16 @@
 				<li class="active"><a href="index.php">Home</a></li>
 				<li><a data-toggle="modal" href="#about-modal">About</a></li>
 				<li><a data-toggle="modal" href="#contact-modal">Contact</a></li>
-				<li><a href="login.php">Login</a></li>
+				<?php
+					$username = isLoggedIn();
+					if (!$username) {
+						echo '<li><a href="login.php">Login</a></li>';
+					}
+					else {
+						echo '<li><a href="add_item.php">Add item</a></li>';
+						echo '<li><a href="#" id="logout">Logout &nbsp;&nbsp;<em>('.$username.')</em></a></li>';
+					}
+				?>
 			</ul>
 		</div>
 	</div>
@@ -49,36 +65,51 @@
 
 <!-- Main -->
 
+<?php
+	if (!isset($_GET['id'])) {
+		echo '<div class="row"><div class = "container well"><br/><p class = "lead text-danger textcenter">There is no data to display, as item id wasn\'t provided!</p></div></div>';
+		exit();
+	}
+	else {
+		$item = getOfferInfo($_GET['id']);
+		if ($item['picturePath'] == "") {
+			$item['picturePath'] = "default.png";
+		}
+	}
+?>
+
 <div class="row">
 	<div class="container">
 		<div class="container col-lg-6 col-sm-6 col-md-6 well">
 			<div class="row">
-				<img class="center" src="http://placehold.it/400x400" alt="Img" class="img-responsive img-rounded">
+				<?php
+					echo '<img class="center" src="images/'.$item['picturePath'].'" alt="'.$item['name'].'" class="img-responsive img-rounded">';
+				?>
 			</div>
 			<div class="row textcenter">
 				<br/>
-				<p class="lead">Name</p>
-				<h5>Author</h5>
+				<p class="lead"><?php echo $item['name']; ?></p>
+				<h5><em>posted by</em> <?php echo $item['author']; ?></h5>
 			</div>
 		</div>
 		<div class="container col-lg-6 col-sm-6 col-md-6">
 			<br/>
 			<br/>
 				<p class="lead">Category: </p>
-				<p>Category / Subcategory</p>
+				<p><?php echo '<a href="category.php?name='.$item['category'].'">'.$item['category']. '</a> / <a href="subcategory.php?name='.$item['subcategory'].'">'.$item['subcategory'].'</a>'?></p>
 				<br/>
 				<p class="lead">Date created: </p>
-				<p>19/19/6666</p>
+				<p><?php echo $item['time']; ?></p>
 				<br/>
 				<p class="lead">Description: </p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, eaque, nostrum distinctio eveniet praesentium libero doloremque est? Maxime, accusantium, ullam ipsam cupiditate voluptatum nihil fugit tempore quas itaque dolorum aspernatur.</p>
+				<p><?php echo $item['description']; ?></p>
 				<br/>
 				<div class="container well">
 					<div class="container col-lg-6 col-sm-6 col-md-6">
 						<p class="lead textright">Current price:</p>
 					</div>
 					<div class="container col-lg-6 col-sm-6 col-md-6">
-						<p class="lead text-success">500E</p>
+						<p class="lead text-success"><?php echo $item['price']; ?> &euro;</p>
 					</div>
 					<button type="button" class="btn btn-primary btn-lg btn-block">Buy now!</button>
 				</div>
@@ -154,6 +185,16 @@
 	  </div>
 	</div>
 </div>
+
+<!-- Scripts -->
+
+<script>
+ $("#logout").click(function () {
+    $.post("inc/api.php", { action:'logout'}, function(results){
+          	window.location.reload(true);
+    });
+  });
+</script>
 
 </body>
 </html>
