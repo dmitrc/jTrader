@@ -25,6 +25,9 @@
         $query = "SELECT Offers.name, FixedPriceOffers.price FROM Offers, FixedPriceOffers WHERE Offers.id = $offerid AND Offers.id = FixedPriceOffers.offerid;";
         $result = mysqli_query($GLOBALS['db'], $query);
 
+        echo 'From: '.$from;
+        echo 'To: '.$to;
+
         if ($result) 
         {
             $r = mysqli_fetch_array($result);
