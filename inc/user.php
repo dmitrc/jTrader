@@ -126,7 +126,7 @@
 
     function getUserItems($eid)
     {
-        $query = "SELECT Offers.id, Offers.name, Offers.picturePath, FixedPriceOffers.price FROM Offers, FixedPriceOffers WHERE Offers.id == $eid;";
+        $query = "SELECT Offers.id, Offers.name, Offers.picturePath, FixedPriceOffers.price FROM Offers, FixedPriceOffers WHERE Offers.userid == $eid AND Offers.id == FixedPriceOffers.offerid;";
         $result = mysqli_query($GLOBALS['db'], $query);
 
         if ($result) 
