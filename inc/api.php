@@ -6,7 +6,7 @@
       if (isset($_POST['args'])) 
       {
         var_export($_POST['args']);
-        call_user_func($_POST['action'], $_POST['args']);
+        call_user_func_array($_POST['action'], $_POST['args']);
       }
       else
       {
