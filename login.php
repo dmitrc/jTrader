@@ -1,3 +1,8 @@
+<!-- PHP -->
+<?php
+	include_once('inc/user-model.php');
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,24 +43,65 @@
 				<button type="submit" class="btn btn-default">Go!</button>
 			</form>
 			<ul class="navbar-nav nav navbar-right">
-				<li class="active"><a href="#home">Home</a></li>
+				<li class="active"><a href="index.php">Home</a></li>
 				<li><a data-toggle="modal" href="#about-modal">About</a></li>
 				<li><a data-toggle="modal" href="#contact-modal">Contact</a></li>
-				<li><a href="#login">Login</a></li>
-				<li><a href="#manage">Management</a></li>
-				<li><a href="#hw8">Homework#8</a></li>
+				<li><a href="login.php">Login</a></li>
 			</ul>
 		</div>
 	</div>
 </nav>
 
-<!-- List of all the possible pages (and their html contents) -->
+<!-- Main -->
 
-<section id="home" class="container" src="pages/home.html"></section>
-<section id="login" class="container" src="pages/login.html"></section>
-<section id="manage" class="container" src="pages/manage.html"></section>
-<section id="hw8" class="container" src="pages/hw8.html"></section>
+<div class="row"><br/></div>
+<div class="row"><br/></div>
 
+<div class="row">
+	<div class="container col-lg-4 col-sm-6 col-lg-offset-4 col-sm-offset-3 well well-lg">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in with your CampusNet data:</h2>
+        <input type="text" class="form-control" id="form_name" placeholder="Username" autofocus>
+        <input type="password" class="form-control" id="form_pass" placeholder="Password">
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <div class="login_button btn btn-lg btn-primary btn-block">Sign in</div>
+      </form>
+
+    </div>
+</div>
+
+<div class="row"><br/></div>
+<div class="row"><br/></div>
+
+<!-- Scripts -->
+
+<script type="text/javascript">
+  $(".login_button").click(function () {
+    var form_login = $("#form_name").val();
+    var form_pass = $("#form_pass").val(); 
+    $.post("/inc/login.php", { username : form_login , password : form_pass }, function(results){
+      $("#results-content").html(results);
+      $('#results-modal').modal('show');
+    });
+  });
+
+  $('#form_name').keydown(function(event){    
+      if(event.keyCode==13){
+           $('.login_button').trigger('click');
+           return false;
+      }
+  });
+
+    $('#form_pass').keydown(function(event){    
+      if (event.keyCode==13){
+        $('.login_button').trigger('click');
+           return false;
+      }
+  });
+</script>
 
 <!-- Footer -->
 

@@ -1,5 +1,5 @@
 <?php
-    include_once('user-model.php');
+    include_once('/inc/user-model.php');
 
     if (isset($_POST['username']) && isset($_POST['password'])) {
       $user = login($_POST['username'],$_POST['password']);
