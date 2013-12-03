@@ -88,7 +88,7 @@
     {
       if (isset($_SESSION))
       {
-        echo $_SESSION["user"]->account;
+        echo 'true';
       }
       else
       {
