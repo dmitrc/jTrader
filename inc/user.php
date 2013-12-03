@@ -32,17 +32,14 @@
                 $rating = 0;
 
                 $sql="INSERT INTO Users (eid, name, fname, lname, roomPhone, roomNumber, college, email, rating) VALUES ('$eid', '$account', '$fname', '$lname','$roomPhone', '$roomNumber', '$college', '$email', '$rating');";
-                echo '<div class = "text-muted"><small><em>' . $sql . '</em></small></div>';
 
-                if (!mysqli_query($GLOBALS['db'],$sql))
-                  {
-                  die('<div class="lead text-danger"><strong>Error: </strong>' . mysqli_error($GLOBALS['db'] ) . '</div>');
-                  }
-                echo '<div class="lead text-success">New user has been added to the database.</div>';
+                if (mysqli_query($GLOBALS['db'],$sql))
+                {
+                  echo 'true';
+                }
             }
 		}
 	}
-
 
 	function login($username, $password) {
 
@@ -125,6 +122,11 @@
 
         $jsonstring = json_encode($obj);
         echo $jsonstring;
+    }
+
+    function getUserItems($eid)
+    {
+
     }
 
 ?>
