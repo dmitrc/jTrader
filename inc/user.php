@@ -92,7 +92,7 @@
       }
       else
       {
-        echo "no";
+        echo "false";
       }
     }
 
@@ -126,7 +126,32 @@
 
     function getUserItems($eid)
     {
+        $query = "SELECT Offers.id, Offers.name, Offers.picturePath, FixedPriceOffers.price FROM Offers, FixedPriceOffers WHERE Offers.id == $eid;";
+        $result = mysqli_query($GLOBALS['db'], $query);
 
+        if ($result) 
+        {
+            $json = array();
+
+            while($r = mysqli_fetch_array($result)) 
+            {
+                $row = array(
+                    'id' => $r['id'],
+                    'name' => $r['name'],
+                    'picturePath' => $r['picturePath'],
+                    'price' => $r['price']
+                    );
+
+                array_push($json, $row);
+            }
+
+            $jsonstring = json_encode($json);
+            echo $jsonstring;
+        }
+        else
+        {
+            echo 'false';
+        }
     }
 
 ?>
