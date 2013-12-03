@@ -243,6 +243,21 @@
 
 <!-- Common modal windows -->
 
+<div class="modal fade" id="results-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	      <h4 class="modal-title">Results</h4>
+	    </div>
+	    <div class="modal-body">
+	      	<div id="results-content">
+	      	</div>
+	    </div>
+	  </div>
+	</div>
+</div>
+
 <div class="modal fade" id="contact-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 	  <div class="modal-content">
@@ -275,7 +290,7 @@
 			<div class="thumbnail">
 				<img src="http://placehold.it/500x300" alt="Img" class="img-responsive img-rounded">
 				<div class="textcenter">
-					<a href="item.php?id=5"><h5>Here will be happy picture of us af</a>ter getting 1.0 in the course :)</h5>
+					<h5>Here will be happy picture of us after getting 1.0 in the course :)</h5>
 				</div>
 			</div>
 	    </div>

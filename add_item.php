@@ -51,35 +51,35 @@
 
 <div class="row">
 	<div class="container">
-		<div class="container col-lg-6 col-sm-6 col-md-6 well">
-			<div class="row">
-				<img class="center" src="http://placehold.it/400x400" alt="Img" class="img-responsive img-rounded">
-			</div>
-			<div class="row textcenter">
-				<br/>
-				<p class="lead">Name</p>
-				<h5>Author</h5>
-			</div>
-		</div>
-		<div class="container col-lg-6 col-sm-6 col-md-6">
-			<br/>
-			<br/>
-				<p class="lead">Category: </p>
-				<p>Category / Subcategory</p>
-				<br/>
-				<p class="lead">Description: </p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, eaque, nostrum distinctio eveniet praesentium libero doloremque est? Maxime, accusantium, ullam ipsam cupiditate voluptatum nihil fugit tempore quas itaque dolorum aspernatur.</p>
-				<br/>
-				<div class="container well">
-					<div class="container col-lg-6 col-sm-6 col-md-6">
-						<p class="lead textright">Current price:</p>
-					</div>
-					<div class="container col-lg-6 col-sm-6 col-md-6">
-						<p class="lead text-success">500E</p>
-					</div>
-					<button type="button" class="btn btn-primary btn-lg btn-block">Buy now!</button>
-				</div>
-		</div>
+		<br/>
+		<form class="form-horizontal" role="form">
+		  <div class="form-group">
+		    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+		    <div class="col-sm-10">
+		      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+		    <div class="col-sm-10">
+		      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <div class="checkbox">
+		        <label>
+		          <input type="checkbox"> Remember me
+		        </label>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="submit" class="btn btn-default">Sign in</button>
+		    </div>
+		  </div>
+</form>
 	</div>
 </div>
 
@@ -95,6 +95,22 @@
 </div>
 
 <!-- Common modal windows -->
+
+
+<div class="modal fade" id="results-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	      <h4 class="modal-title">Results</h4>
+	    </div>
+	    <div class="modal-body">
+	      	<div id="results-content">
+	      	</div>
+	    </div>
+	  </div>
+	</div>
+</div>
 
 <div class="modal fade" id="contact-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
