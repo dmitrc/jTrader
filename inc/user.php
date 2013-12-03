@@ -6,24 +6,15 @@
 		var $eid;
 		var $employeetype;
 		var $account;
-		var $attributes;
 		var $fname;
 		var $lname;
 		var $displayname;
 		var $name;
-		var $cn;
 		var $college;
-		var $majorinfo;
-		var $majorlong;
-		var $country;
 		var $email;
 		var $room; // to be parsed
 		var $phone;
-		var $description;
-		var $title;
-		var $office;
-		var $department;
-		var $www;
+    }
 
 		function writeToDb() 
         {
@@ -63,7 +54,7 @@
         error_reporting(0);
         $conn = ldap_connect("jacobs.jacobs-university.de",389);
         if (!ldap_bind($conn,$username."@jacobs.jacobs-university.de",$password)) {
-            echo "no";
+            echo "false";
             return false;
         }
 
@@ -71,7 +62,8 @@
         $r = ldap_get_entries($conn, $search);
 
         if (count($r) == 0) {
-          return "AuthData correct; Info lookup failed.";
+          echo "false";
+          return false;
         }
 
         $user = new User();
@@ -84,23 +76,16 @@
         $user->lname = htmlentities(utf8_encode($r[0]['sn'][0]),ENT_COMPAT,'utf-8');
         $user->displayname = htmlentities(utf8_encode($r[0]['displayname'][0]),ENT_COMPAT,'utf-8');
         $user->name = htmlentities(utf8_encode($r[0]['name'][0]),ENT_COMPAT,'utf-8');
-        $user->cn = htmlentities(utf8_encode($r[0]['cn'][0]),ENT_COMPAT,'utf-8');
         $user->college = htmlentities(utf8_encode($r[0]['houseidentifier'][0]),ENT_COMPAT,'utf-8');
-        $user->majorinfo = htmlentities(utf8_encode($r[0]['extensionattribute2'][0]),ENT_COMPAT,'utf-8');
-        $user->majorlong = htmlentities(utf8_encode($r[0]['extensionattribute3'][0]),ENT_COMPAT,'utf-8');
         $user->country = htmlentities(utf8_encode($r[0]['extensionattribute5'][0]),ENT_COMPAT,'utf-8');
         $user->email = htmlentities(utf8_encode($r[0]['mail'][0]),ENT_COMPAT,'utf-8');
         $user->phone = htmlentities(utf8_encode($r[0]['telephonenumber'][0]),ENT_COMPAT,'utf-8');
-        $user->description = htmlentities(utf8_encode($r[0]['description'][0]),ENT_COMPAT,'utf-8');
-        $user->title = htmlentities(utf8_encode($r[0]['title'][0]),ENT_COMPAT,'utf-8');
-        $user->office = htmlentities(utf8_encode($r[0]['physicaldeliveryofficename'][0]),ENT_COMPAT,'utf-8');
-        $user->department = htmlentities(utf8_encode($r[0]['department'][0]),ENT_COMPAT,'utf-8');
-        $user->www = htmlentities(utf8_encode($r[0]['wwwhomepage'][0]),ENT_COMPAT,'utf-8');
         $user->room = "XX999";
 
         $_SESSION["user"] = $user;
         $user->writeToDb();
         ldap_unbind($conn);
+        error_reporting(4);
 
         return $user;
     }
