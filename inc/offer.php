@@ -1,6 +1,6 @@
 <?php
 
-	include_once(dirname(__FILE__).'/../config.php');
+	require_once(dirname(__FILE__).'/../config.php');
 
 	class Offer {
 		var $userID;
@@ -54,9 +54,6 @@
 		} else {
 			echo 'true';
 		}
-
-
-		
 	}
 	
 	function getInfo($ID){
@@ -127,6 +124,150 @@
 
 	function buyItem($buyerID, $offerID){
 
+		$offerQuery = 'SELECT id FROM FixedPriceOffers where offerid = '.$offerID.';';
+		$offerResult = mysqli_query($GLOBALS['db'],$offerQuery);
+
+		if(!$offerResult){
+			die('Query failed with the error: ' . mysqli_error($GLOBALS['db']) . '<br/><br/>Failing query: ' . $offerQuery);			
+		}
+		$offerRows = Array();
+		while($r = mysqli_fetch_assoc($offerResult)){
+			$offerRows[] = $r;
+		}
+
+		$fpoID = $offerRows[0]['id'];
+
+		$query = 'INSERT INTO FixedPriceBids (buyerid,fixedPriceOfferID,bidtime) VALUES('.$buyerID.','.$offerRows[0]['id'].', NOW());';
+
+		$result = mysqli_query($GLOBALS['db'],$query);
+		if(!$result){
+			echo 'false';
+		} else {
+			echo 'true';
+		}
+
 	}
+
+	function getOfferID($offerID){
+		$query = 'SELECT offerID FROM FixedPriceOffers WHERE offerid ='.$offerID.';';
+		$result = mysqli_query($GLOBALS['db'],$query);
+
+		if(!$result){
+			die('Query failed with the error: ' . mysqli_error($GLOBALS['db']) . '<br/><br/>Failing query: ' . $query);			
+		}
+		$rows = Array();
+		while($r = mysqli_fetch_assoc($result)){
+			$rows[] = $r;
+		}
+
+		return $rows[0]['offerID'];
+	}
+
+	function confirmBought($offerID, $buyerID){
+		$fpoID = getOfferID($offerID);
+
+		$query = 'SELECT buyerid FROM FixedPriceBids WHERE fixedPriceOfferID ='.$fpoID.';';
+
+		$result = mysqli_query($GLOBALS['db'],$query);
+
+		if(!$result){
+			die('Query failed with the error: ' . mysqli_error($GLOBALS['db']) . '<br/><br/>Failing query: ' . $query);			
+		}
+		$rows = Array();
+		while($r = mysqli_fetch_assoc($result)){
+			$rows[] = $r;
+		}
+
+		foreach($rows as $row){
+			if($row['buyerid']!=$buyerid){
+				echo "send e-mail to the suckers"
+			} else {
+				echo "send e-mail to winner";
+			}
+		}
+
+		$deleteQuery = 'DELETE FROM Offers WHERE id = '.$offerID.';';
+		$delResult = mysqli_error($GLOBALS['db'],$deleteQuery);
+		if(!$delResult){
+			echo 'false';
+			//die('Query failed with the error: ' . mysqli_error($GLOBALS['db']) . '<br/><br/>Failing query: ' . $deleteQuery);			
+		} else {
+			echo 'true';
+		}
+	}
+
+	
+
+	function allBuyers($offerID){
+
+		$fixedPriceOfferID = getOfferID($offerID);
+
+		$query = 'SELECT buyerid FROM FixedPriceBids WHERE fixedPriceOfferID ='.$fixedPriceOfferID.' ORDER BY bidtime ASC';
+
+		$result = mysqli_query($GLOBALS['db'],$query);
+
+		if(!$result){
+			die('Query failed with the error: ' . mysqli_error($GLOBALS['db']) . '<br/><br/>Failing query: ' . $query);			
+		}
+
+		$rows = Array();
+		while($r = mysqli_fetch_assoc($result)){
+			$rows[] = $r;
+		}
+		$outArray = Array();
+
+		foreach($rows as $row){
+			$userQuery = 'SELECT name, fname, lname, eid FROM Users WHERE eid ='.$row['buyerid'].';';
+			$userResult = mysqli_query($GLOBALS['db'],$userQuery);
+			if(!$userResult){
+				die('Query failed with the error: ' . mysqli_error($GLOBALS['db']) . '<br/><br/>Failing query: ' . $userQuery);			
+			}
+			$uRows = Array();
+			while($r = mysqli_fetch_assoc($userResult)){
+				$uRows[] = $r;
+			}
+
+			$outArray[] = $uRows;
+		}
+
+		echo json_encode($outArray);
+	}
+
+	function recentOffers(){
+		$query = 'SELECT FixedPriceOffers.price, Offers.picturePath, Offers.name
+		FROM FixedPriceOffers, Offers
+		WHERE Offers.id = FixedPriceOffers.offerid
+		ORDER BY Offers.postTime DESC 
+		LIMIT 6';
+
+		$result = mysqli_query($GLOBALS['db'],$query);
+		if(!$result){
+			die('Query failed with the error: ' . mysqli_error($GLOBALS['db']) . '<br/><br/>Failing query: ' . $query);			
+		}
+		$rows = Array();
+		while($r = mysqli_fetch_assoc($result)){
+			$rows[] = $r;
+		}
+		echo json_encode($rows);
+	}
+
+	function hotOffers(){
+		$query = 'SELECT FixedPriceOffers.price, Offers.picturePath, Offers.name
+		FROM FixedPriceOffers, Offers
+		WHERE Offers.id = FixedPriceOffers.offerid
+		LIMIT 4';
+
+		$result = mysqli_query($GLOBALS['db'],$query);
+		if(!$result){
+			die('Query failed with the error: ' . mysqli_error($GLOBALS['db']) . '<br/><br/>Failing query: ' . $query);			
+		}
+		$rows = Array();
+		while($r = mysqli_fetch_assoc($result)){
+			$rows[] = $r;
+		}
+		echo json_encode($rows);
+	}
+
+
 
 ?>
