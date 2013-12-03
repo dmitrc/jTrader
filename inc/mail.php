@@ -3,7 +3,7 @@
 
     $url = 'http://dcode.tk/php/jtrade.php';
 
-    sendRequestEmail($to, $offerid)
+    function sendRequestEmail($to, $offerid)
     {
         $eid = $_SESSION["user"]->eid;
         $from = $_SESSION["user"]->email;
@@ -43,6 +43,12 @@
             $query = "UPDATE Users SET rating=(rating+1) WHERE email = $to;";
             mysqli_query($GLOBALS['db'], $query);
         }
+        else
+        {
+            echo 'false';
+        }
     }
+
+
 
 ?>
