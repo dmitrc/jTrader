@@ -1,3 +1,9 @@
+<?php
+	error_reporting(0);
+	require_once(dirname(__FILE__).'/./inc/user.php');
+	session_start(); 
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +47,17 @@
 				<li class="active"><a href="index.php">Home</a></li>
 				<li><a data-toggle="modal" href="#about-modal">About</a></li>
 				<li><a data-toggle="modal" href="#contact-modal">Contact</a></li>
-				<li><a href="login.php">Login</a></li>
+				<?php
+					$username = isLoggedIn();
+					if (!$username) {
+						echo '<li><a href="login.php">Login</a></li>';
+					}
+					else {
+						echo '<li><a href="add_item.php">Add item</a></li>';
+						echo '<li><a id= "#logout">Logout</a></li>';
+						echo '<p class="navbar-text"><em>Logged in as '.$username.'</em></p>';
+					}
+				?>
 			</ul>
 		</div>
 	</div>

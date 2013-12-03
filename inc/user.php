@@ -1,5 +1,6 @@
 <?php
 
+    session_start();
 	require_once(dirname(__FILE__).'/../config.php');
 
 	class User {
@@ -88,7 +89,7 @@
     {
       if (isset($_SESSION["user"]))
       {
-        return $_SESSION["user"]->account;
+        return $_SESSION["user"]->fname." ".$_SESSION["user"]->lname;
       }
       else
       {
