@@ -15,7 +15,7 @@
 
 		function writeToDb() 
         {
-            $account = $_SESSION["user"]->accountname;
+            $account = $_SESSION["user"]->account;
 
             $query = "SELECT name FROM Users WHERE name == $account;";
             $result = mysqli_query($GLOBALS['db'], $query);
@@ -93,7 +93,7 @@
     {
       if (isset($_SESSION))
       {
-        echo $_SESSION["user"]->name;
+        echo $_SESSION["user"]->account;
       }
       else
       {
@@ -103,7 +103,7 @@
 
     function getUserInfo($eid)
     {
-        $name = $_SESSION["user"]->accountname;
+        $accountname = $_SESSION["user"]->account;
         $eid = $_SESSION["user"]->eid;
         $fname = $_SESSION["user"]->fname;
         $lname = $_SESSION["user"]->lname;
@@ -114,7 +114,7 @@
         $rating = $_SESSION['user']->rating;
 
         $obj = array(
-            'name'=> $name,
+            'name'=> $accountname,
             'eid' => $eid,
             'fname' => $fname,
             'lname' => $lname,
