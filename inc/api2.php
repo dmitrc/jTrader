@@ -1,5 +1,5 @@
 <?php
-    include_once('user-model.php');
+    require_once('user-model.php');
 
     if (isset($_POST['action'])) 
     {

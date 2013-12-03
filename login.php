@@ -1,8 +1,3 @@
-<!-- PHP -->
-<?php
-	include_once('inc/user-model.php');
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,7 +77,7 @@
   $(".login_button").click(function () {
     var form_login = $("#form_name").val();
     var form_pass = $("#form_pass").val(); 
-    $.post("/inc/login.php", { username : form_login , password : form_pass }, function(results){
+    $.post("inc/api2.php", { action: 'login', args : [form_login,form_pass] }, function(results){
       $("#results-content").html(results);
       $('#results-modal').modal('show');
     });
