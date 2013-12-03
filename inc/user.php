@@ -124,9 +124,9 @@
         echo $jsonstring;
     }
 
-    function getUserItems($eid)
+    function getUserItems()
     {
-        $query = "SELECT Offers.id, Offers.name, Offers.picturePath, FixedPriceOffers.price FROM Offers, FixedPriceOffers WHERE Offers.userid == $eid AND Offers.id == FixedPriceOffers.offerid;";
+        $query = "SELECT Offers.id, Offers.name, Offers.picturePath, FixedPriceOffers.price FROM Offers, FixedPriceOffers WHERE Offers.userid == 1 AND Offers.id == FixedPriceOffers.offerid;";
         $result = mysqli_query($GLOBALS['db'], $query);
 
         if ($result) 
