@@ -87,7 +87,7 @@
 
     function isLoggedIn() 
     {
-      if (isset($_SESSION))
+      if (isset($_SESSION["user"]))
       {
         return $_SESSION["user"]->account;
       }
