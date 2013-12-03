@@ -56,30 +56,7 @@
 
 <div class="row">
 	<div class="container">
-		<div class="container col-lg-6 col-sm-6 col-md-6 well">
-			<div class="row">
-				<img class="center" src="http://placehold.it/400x400" alt="Img" class="img-responsive img-rounded">
-			</div>
-			<div class="row textcenter">
-				<br/>
-				<p class = "lead">Name</p>
-				<h5>Author</h5>
-			</div>
-		</div>
-		<div class="container col-lg-6 col-sm-6 col-md-6">
-			<br/>
-			<br/>
-				<p class="lead">Categories: </p>
-				<p>CategoryA, CategoryB, CategoryC</p>
-				<br/>
-				<p class="lead">Description: </p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, eaque, nostrum distinctio eveniet praesentium libero doloremque est? Maxime, accusantium, ullam ipsam cupiditate voluptatum nihil fugit tempore quas itaque dolorum aspernatur.</p>
-				<br/>
-				<div class="container well">
-					<div class="lead textcenter">Current price: <div class="text-success">500€</div></div>
-					<button type="button" class="btn btn-primary btn-lg btn-block">Buy now!</button>
-				</div>
-		</div>
+		
 	</div>
 </div>
 

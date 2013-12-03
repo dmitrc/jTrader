@@ -1,6 +1,6 @@
 <?php
 
-	require_once('../config.php');
+	require_once('config.php');
 
 	class User {
 		var $eid;
@@ -84,7 +84,14 @@
 
     function isLoggedIn() 
     {
-      return isset($_SESSION);
+      if (isset($_SESSION))
+      {
+        echo $_SESSION["user"]->name;
+      }
+      else
+      {
+        echo "<no>";
+      }
     }
 
 ?>
