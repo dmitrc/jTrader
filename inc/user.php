@@ -113,15 +113,15 @@
         $rating = $_SESSION['user']->rating;
 
         $obj = array(
-            'name': $name,
-            'eid' : $eid,
-            'fname' : $fname,
-            'lname' : $lname,
-            'college' : $college,
-            'roomPhone' : $roomPhone,
-            'roomNumber' : $roomNumber,
-            'email' : $email,
-            'rating' : $rating
+            'name'=> $name,
+            'eid' => $eid,
+            'fname' => $fname,
+            'lname' => $lname,
+            'college' => $college,
+            'roomPhone' => $roomPhone,
+            'roomNumber' => $roomNumber,
+            'email' => $email,
+            'rating' => $rating
         );
 
         $jsonstring = json_encode($obj);
