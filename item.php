@@ -26,7 +26,7 @@
 		    <span class="icon-bar"></span>
 		    <span class="icon-bar"></span>
 		   	</button>
-			<a href="index.html" class="navbar-brand">jTrader</a>
+			<a href="index.php" class="navbar-brand">jTrader</a>
 		</div>
 		<div class="navbar-collapse collapse navbar-ex1-collapse">
 			<ul class="navbar-nav nav">
@@ -57,15 +57,15 @@
 			</div>
 			<div class="row textcenter">
 				<br/>
-				<p class = "lead">Name</p>
+				<p class="lead">Name</p>
 				<h5>Author</h5>
 			</div>
 		</div>
 		<div class="container col-lg-6 col-sm-6 col-md-6">
 			<br/>
 			<br/>
-				<p class="lead">Categories: </p>
-				<p>CategoryA, CategoryB, CategoryC</p>
+				<p class="lead">Category: </p>
+				<p>Category / Subcategory</p>
 				<br/>
 				<p class="lead">Description: </p>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, eaque, nostrum distinctio eveniet praesentium libero doloremque est? Maxime, accusantium, ullam ipsam cupiditate voluptatum nihil fugit tempore quas itaque dolorum aspernatur.</p>
