@@ -14,7 +14,6 @@
 		var $email;
 		var $room; // to be parsed
 		var $phone;
-    }
 
 		function writeToDb() 
         {
