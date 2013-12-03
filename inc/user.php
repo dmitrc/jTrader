@@ -58,7 +58,6 @@
           return false;
         }
 
-        session_start();
         $user = new User();
 
         $user->eid = htmlentities(utf8_encode($r[0]['employeeid'][0]),ENT_COMPAT,'utf-8');
