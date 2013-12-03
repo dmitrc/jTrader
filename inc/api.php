@@ -9,7 +9,7 @@
       }
       else
       {
-        call_user_func_array($_POST['action']);
+        call_user_func($_POST['action']);
       }
     }
 

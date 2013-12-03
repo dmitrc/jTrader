@@ -78,9 +78,12 @@
     var form_login = $("#form_name").val();
     var form_pass = $("#form_pass").val(); 
     $.post("inc/api.php", { action:'login', args:[form_login,form_pass]}, function(results){
-      if (results != "ok") {
+      if (results != "true") {
       	$("#results-content").html(results);
       	$('#results-modal').modal('show');
+      }
+      else {
+      	window.location.href = "index.php";
       }
     });
   });

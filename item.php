@@ -67,6 +67,9 @@
 				<p class="lead">Category: </p>
 				<p>Category / Subcategory</p>
 				<br/>
+				<p class="lead">Date created: </p>
+				<p>19/19/6666</p>
+				<br/>
 				<p class="lead">Description: </p>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, eaque, nostrum distinctio eveniet praesentium libero doloremque est? Maxime, accusantium, ullam ipsam cupiditate voluptatum nihil fugit tempore quas itaque dolorum aspernatur.</p>
 				<br/>

@@ -50,33 +50,42 @@
 <!-- Main -->
 
 <div class="row">
-	<div class="container">
+	<div class="container col-sm-offset-3 col-sm-offset-3 col-sm-offset-3 col-sm-6 col-md-6 col-lg-6">
+		<br/>
+		<p class="lead">Add new item:</p>
 		<br/>
 		<form class="form-horizontal" role="form">
 		  <div class="form-group">
-		    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-		    <div class="col-sm-10">
-		      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+		    <label for="form_name" class="col-sm-2 col-md-2 col-lg2 control-label">Name</label>
+		    <div class="col-sm-10 col-lg-10 col-md-10">
+		      <input type="email" class="form-control" id="form_name">
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-		    <div class="col-sm-10">
-		      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+		    <label for="form_description" class="col-sm-2 control-label">Description</label>
+		    <div class="col-sm-10 col-lg-10 col-md-10">
+		      <textarea class="form-control" id="form_description" rows="5"></textarea>
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <div class="col-sm-offset-2 col-sm-10">
-		      <div class="checkbox">
-		        <label>
-		          <input type="checkbox"> Remember me
-		        </label>
-		      </div>
+			<label for="form_category" class="col-sm-2 control-label">Category</label>
+		    <div class="col-sm-10 col-lg-10 col-md-10">
+		    	<select class="form-control" id="form_category">
+				  <option>Cat1</option>
+				  <option>Cat2</option>
+				  <option>Cat3</option>
+				  <option>Cat4</option>
+				  <option>Cat5</option>
+				</select> 
 		    </div>
 		  </div>
+		  <br/>
 		  <div class="form-group">
-		    <div class="col-sm-offset-2 col-sm-10">
-		      <button type="submit" class="btn btn-default">Sign in</button>
+		    <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-2 col-sm-4 col-lg-4 col-md-4">
+		      <button type="submit" id="form_cancel" class="btn btn-default btn-block">Cancel</button>
+		    </div>
+		    <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-2 col-sm-4 col-lg-4 col-md-4">
+		    	<button type="submit" id="form_submit" class="btn btn-success btn-block">Submit!</button>
 		    </div>
 		  </div>
 </form>
