@@ -1,8 +1,6 @@
 <?php
     require_once(dirname(__FILE__).'/./user.php');
 
-    $url = 'http://dcode.tk/php/jtrade.php';
-
     function sendRequestEmail($idTo, $offerid)
     {
         $eid = $_SESSION["user"]->eid;
@@ -12,6 +10,7 @@
         $to = '';
         $query = "SELECT email FROM Users WHERE id = $idTo;";
         $result = mysqli_query($GLOBALS['db'], $query);
+        $url = 'http://dcode.tk/php/jtrade.php';
 
         if ($result) 
         {
