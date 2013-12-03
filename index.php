@@ -51,7 +51,7 @@
 
 <div class="row">
 	<div class="col-sm-3 well">
-		<div class="container high">
+		<div class="container">
 			<h4>Categories:</h4>
 			<div class="panel-group" id="categories">
 				<div class="panel panel-default">
@@ -114,43 +114,43 @@
 					<div class="container well">
 						<h4>Recently added:</h4>
 						<div class="col-lg-2 col-sm-2 thumbnail">
-							<img class="center" src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
+							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
+							<div class="description">
 								<a href="item.php?id=5"><h5>Item 1</h5></a>
 								<p >50€</p>
 							</div>
 						</div>
 						<div class="col-lg-2 col-sm-2 thumbnail">
-							<img class="center" src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
+							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
+							<div class="description">
 								<a href="item.php?id=5"><h5>Item 2</h5></a>
 								<p>10€</p>
 							</div>
 						</div>
 						<div class="col-lg-2 col-sm-2 thumbnail">
-							<img class="center" src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
+							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
+							<div class="description">
 								<a href="item.php?id=5"><h5>Item 3</h5></a>
 								<p>70€</p>
 							</div>
 						</div>
 						<div class="col-lg-2 col-sm-2 thumbnail">
-							<img class="center" src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
+							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
+							<div class="description">
 								<a href="item.php?id=5"><h5>Item 4</h5></a>
 								<p>20€</p>
 							</div>
 						</div>
 						<div class="col-lg-2 col-sm-2 thumbnail">
-							<img class="center" src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
+							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
+							<div class="description">
 								<a href="item.php?id=5"><h5>Item 5</h5></a>
 								<p>50€</p>
 							</div>
 						</div>
 						<div class="col-lg-2 col-sm-2 thumbnail">
-							<img class="center" src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
+							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
+							<div class="description">
 								<a href="item.php?id=5"><h5>Item 6</h5></a>
 								<p>10€</p>
 							</div>
@@ -163,29 +163,29 @@
 					<div class="container well">
 						<h4>Popular:</h4>
 						<div class="col-lg-3 col-sm-3 thumbnail">
-							<img class="center" src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
+							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
+							<div class="description">
 								<a href="item.php?id=5"><h5>Item 1</h5></a>
 								<p>50€</p>
 							</div>
 						</div>
 						<div class="col-lg-3 col-sm-3 thumbnail">
-							<img class="center" src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
+							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
+							<div class="description">
 								<a href="item.php?id=5"><h5>Item 2</h5></a>
 								<p>10€</p>
 							</div>
 						</div>
 						<div class="col-lg-3 col-sm-3 thumbnail">
-							<img class="center" src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
+							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
+							<div class="description">
 								<a href="item.php?id=5"><h5>Item 3</h5></a>
 								<p>70€</p>
 							</div>
 						</div>
 						<div class="col-lg-3 col-sm-3 thumbnail">
-							<img class="center" src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
+							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
+							<div class="description">
 								<a href="item.php?id=5"><h5>Item 4</h5></a>
 								<p>20€</p>
 							</div>
@@ -196,29 +196,29 @@
 					<div class="container well">
 						<h4>My items:</h4>
 						<div class="col-lg-3 col-sm-3 thumbnail">
-							<img class="center" src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
+							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
+							<div class="description">
 								<a href="item.php?id=5"><h5>Item 1</h5></a>
 								<p>50€</p>
 							</div>
 						</div>
 						<div class="col-lg-3 col-sm-3 thumbnail">
-							<img class="center" src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
+							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
+							<div class="description">
 								<a href="item.php?id=5"><h5>Item 2</h5></a>
 								<p>10€</p>
 							</div>
 						</div>
 						<div class="col-lg-3 col-sm-3 thumbnail">
-							<img class="center" src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
+							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
+							<div class="description">
 								<a href="item.php?id=5"><h5>Item 3</h5></a>
 								<p>70€</p>
 							</div>
 						</div>
 						<div class="col-lg-3 col-sm-3 thumbnail">
-							<img class="center" src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
+							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
+							<div class="description">
 								<a href="item.php?id=5"><h5>Item 4</h5></a>
 								<p>20€</p>
 							</div>
@@ -288,8 +288,8 @@
 	      	<p>jTrader was created by Dmitrii, Andrei and Nikolche as their practical project for Databases & Web Applications course.</p>
 			<p>However, it never felt like an assignment, but more like a personal project, that can greatly improve our development skills and bring benefit to Jacobs University students and faculty.</p>
 			<div class="thumbnail">
-				<img class="center" src="http://placehold.it/500x300" alt="Img" class="img-responsive img-rounded">
-				<div class="textcenter">
+				<img src="http://placehold.it/500x300" alt="Img" class="img-responsive img-rounded">
+				<div class="description">
 					<a href="item.php?id=5"><h5>Here will be happy picture of us af</a>ter getting 1.0 in the course :)</h5>
 				</div>
 			</div>
