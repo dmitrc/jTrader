@@ -78,8 +78,7 @@
     var form_login = $("#form_name").val();
     var form_pass = $("#form_pass").val(); 
     $.post("inc/api.php", { action:'login', args:[form_login,form_pass]}, function(results){
-      $("#results-content").html(results);
-      $('#results-modal').modal('show');
+      alert(results);
     });
   });
 
@@ -110,21 +109,6 @@
 </div>
 
 <!-- Common modal windows -->
-
-<div class="modal fade" id="results-modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-	  <div class="modal-content">
-	    <div class="modal-header">
-	      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	      <h4 class="modal-title">Results</h4>
-	    </div>
-	    <div class="modal-body">
-	      	<div id="results-content">
-	      	</div>
-	    </div>
-	  </div>
-	</div>
-</div>
 
 <div class="modal fade" id="contact-modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
