@@ -121,13 +121,12 @@
 
 		$arr = array( 'author'  => $author, 'name' => $name, 'description' => $description, 'time' => $time , 'pic' => $pic, 'category' => $category,'subcategory' =>  $subcategory, 'price' => $price );
 
-		echo json_encode($arr);
 		return json_encode($arr);
 	}
 
 
 	function buyItem($buyerID, $offerID){
-		
+
 	}
 
 ?>
