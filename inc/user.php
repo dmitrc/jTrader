@@ -31,7 +31,7 @@
                 $email = $_SESSION['user']->email;
                 $rating = 0;
 
-                $sql="INSERT INTO Users (eid, name, fname, lname, roomPhone, roomNumber, college, email, rating) VALUES ('$eid', '$account', '$fname', '$lname','$roomPhone '$roomNumber', '$college', '$email', '$rating')";
+                $sql="INSERT INTO Users (eid, name, fname, lname, roomPhone, roomNumber, college, email, rating) VALUES ('$eid', '$account', '$fname', '$lname','$roomPhone', '$roomNumber', '$college', '$email', '$rating')";
                 echo '<div class = "text-muted"><small><em>' . $sql . '</em></small></div>';
 
                 if (!mysqli_query($con,$sql))
@@ -80,6 +80,7 @@
         ldap_unbind($conn);
         error_reporting(4);
 
+        echo 'true';
         return $user;
     }
 
