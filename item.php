@@ -1,8 +1,3 @@
-<!-- PHP -->
-<?php
-	include_once('inc/user-model.php');
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,7 +71,12 @@
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, eaque, nostrum distinctio eveniet praesentium libero doloremque est? Maxime, accusantium, ullam ipsam cupiditate voluptatum nihil fugit tempore quas itaque dolorum aspernatur.</p>
 				<br/>
 				<div class="container well">
-					<div class="lead textcenter">Current price: <div class="text-success">500€</div></div>
+					<div class="container col-lg-6 col-sm-6 col-md-6">
+						<p class="lead textright">Current price:</p>
+					</div>
+					<div class="container col-lg-6 col-sm-6 col-md-6">
+						<p class="lead text-success">500E</p>
+					</div>
 					<button type="button" class="btn btn-primary btn-lg btn-block">Buy now!</button>
 				</div>
 		</div>
