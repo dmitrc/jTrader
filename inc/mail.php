@@ -1,14 +1,27 @@
 <?php
-    include_once(dirname(__FILE__).'/./user.php');
+    require_once(dirname(__FILE__).'/./user.php');
 
     $url = 'http://dcode.tk/php/jtrade.php';
 
-    function sendRequestEmail($to, $offerid)
+    function sendRequestEmail($idTo, $offerid)
     {
         $eid = $_SESSION["user"]->eid;
         $from = $_SESSION["user"]->email;
         $name = $_SESSION["user"]->account;
         $subject = "jTrade Purchase Request";
+        $to = '';
+        $query = "SELECT email FROM Users WHERE id = $idTo;";
+        $result = mysqli_query($GLOBALS['db'], $query);
+
+        if ($result) 
+        {
+            $r = mysqli_fetch_array($result);
+            $to = $r['email'];
+        }
+        else
+        {
+            echo 'false';
+        }
 
         $query = "SELECT Offers.name, FixedPriceOffers.price FROM Offers, FixedPriceOffers WHERE Offers.id = $offerid AND Offers.id = FixedPriceOffers.offerid;";
         $result = mysqli_query($GLOBALS['db'], $query);

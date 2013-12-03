@@ -1,6 +1,6 @@
 <?php
-    include_once(dirname(__FILE__).'/./user.php');
-    include_once(dirname(__FILE__).'/./mail.php');
+    require_once(dirname(__FILE__).'/./user.php');
+    require_once(dirname(__FILE__).'/./mail.php');
 
     if (isset($_POST['action'])) 
     {
