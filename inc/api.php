@@ -1,5 +1,5 @@
 <?php
-    include_once('user-model.php');
+    include_once(dirname(__FILE__).'/./user-model.php');
 
     if (isset($_POST['action'])) 
     {
