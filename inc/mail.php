@@ -71,18 +71,29 @@
         }
     }
 
-    function sendConfirmationEmail($offerid)
+    function sendConfirmationEmail($idTo, $offerid)
     {
+        $idTo = mysqli_real_escape_string($GLOBALS['db'], $idTo);
         $offerid = mysqli_real_escape_string($GLOBALS['db'], $offerid);
 
         $eid = $_SESSION["user"]->eid;
         $from = $_SESSION["user"]->email;
         $name = $_SESSION["user"]->account;
         $subject = "jTrade Transaction Request";
-
+        $to = '';
+        $query = "SELECT email FROM Users WHERE eid = $idTo;";
+        $result = mysqli_query($GLOBALS['db'], $query);
         $url = 'http://dcode.tk/php/jtrade.php';
 
-        $to = getEmail($offerid);
+        if ($result) 
+        {
+            $r = mysqli_fetch_array($result);
+            $to = $r['email'];
+        }
+        else
+        {
+            echo 'false';
+        }
 
         $query = "SELECT Offers.name, FixedPriceOffers.price FROM Offers, FixedPriceOffers WHERE Offers.id = $offerid AND Offers.id = FixedPriceOffers.offerid;";
         $result = mysqli_query($GLOBALS['db'], $query);
@@ -123,18 +134,29 @@
         }
     }
 
-    function sendRejectionEmail($offerid)
+    function sendRejectionEmail($idTo, $offerid)
     {
+        $idTo = mysqli_real_escape_string($GLOBALS['db'], $idTo);
         $offerid = mysqli_real_escape_string($GLOBALS['db'], $offerid);
         
         $eid = $_SESSION["user"]->eid;
         $from = $_SESSION["user"]->email;
         $name = $_SESSION["user"]->account;
         $subject = "jTrade Transaction Rejection";
- 
+        $to = '';
+        $query = "SELECT email FROM Users WHERE eid = $idTo;";
+        $result = mysqli_query($GLOBALS['db'], $query);
         $url = 'http://dcode.tk/php/jtrade.php';
 
-        $to = getEmail($offerid);
+        if ($result) 
+        {
+            $r = mysqli_fetch_array($result);
+            $to = $r['email'];
+        }
+        else
+        {
+            echo 'false';
+        }
 
         $query = "SELECT Offers.name, FixedPriceOffers.price FROM Offers, FixedPriceOffers WHERE Offers.id = $offerid AND Offers.id = FixedPriceOffers.offerid;";
         $result = mysqli_query($GLOBALS['db'], $query);
