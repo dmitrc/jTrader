@@ -122,6 +122,8 @@
 					}
 					?>
 					</div>
+
+					<!-- todo: Add extra options for the seller -->
 				</div>
 		</div>
 	</div>
@@ -206,7 +208,7 @@
 	  });
 
 	$("#buy_button").click(function () {
-		
+
 	});
 
 	$("#login_button").click(function () {
