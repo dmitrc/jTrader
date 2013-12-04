@@ -84,84 +84,81 @@
 ?>
 
 <div class="row">
-	<div class="container">
-		<div class="container col-lg-6 col-sm-6 col-md-6 well">
-			<div class="row">
-				<?php
-					echo '<img class="center" src="images/'.$item['picturePath'].'" alt="'.$item['name'].'" class="img-responsive img-rounded">';
-				?>
-			</div>
-			<div class="row textcenter">
-				<br/>
-				<p class="lead"><?php echo $item['name']; ?></p>
-				<h5><em>posted by</em> <?php echo $item['author']; ?></h5>
-			</div>
-		</div>
-		<div class="container col-lg-6 col-sm-6 col-md-6">
+	<div class="container col-lg-6 col-sm-6 col-md-6 well">
+		<div class="row"><div class="container">
+			<?php
+				echo '<img class="center" src="images/'.$item['picturePath'].'" alt="'.$item['name'].'" width=400 class="img-responsive img-rounded">';
+			?>
+		</div></div>
+		<div class="row textcenter"><div class="container">
 			<br/>
+			<p class="lead"><?php echo $item['name']; ?></p>
+			<h5><em>posted by</em> <?php echo $item['author']; ?></h5>
+		</div></div>
+	</div>
+	<div class="container col-lg-6 col-sm-6 col-md-6">
+		<br/>
+			<p class="lead">Category: </p>
+			<p><?php echo '<a href="category.php?name='.$item['category'].'">'.$item['category']. '</a> / <a href="subcategory.php?name='.$item['subcategory'].'">'.$item['subcategory'].'</a>'?></p>
 			<br/>
-				<p class="lead">Category: </p>
-				<p><?php echo '<a href="category.php?name='.$item['category'].'">'.$item['category']. '</a> / <a href="subcategory.php?name='.$item['subcategory'].'">'.$item['subcategory'].'</a>'?></p>
-				<br/>
-				<p class="lead">Date created: </p>
-				<p><?php echo $item['time']; ?></p>
-				<br/>
-				<p class="lead">Description: </p>
-				<p><?php echo $item['description']; ?></p>
-				<br/>
-				<div class="container well">
-					<div class="container col-lg-6 col-sm-6 col-md-6">
-						<p class="lead textright">Current price:</p>
-					</div>
-					<div class="container col-lg-6 col-sm-6 col-md-6">
-						<p class="lead text-success"><?php echo $item['price']; ?> &euro;</p>
-					</div>
+			<p class="lead">Date created: </p>
+			<p><?php echo $item['time']; ?></p>
+			<br/>
+			<p class="lead">Description: </p>
+			<p><?php echo $item['description']; ?></p>
+			<br/>
+			<div class="container well">
+				<div class="container col-lg-6 col-sm-6 col-md-6">
+					<p class="lead textright">Current price:</p>
+				</div>
+				<div class="container col-lg-6 col-sm-6 col-md-6">
+					<p class="lead text-success"><?php echo $item['price']; ?> &euro;</p>
+				</div>
 
-					<div class="container">
-					<?php
-					$result = allBuyers($_GET['id']);
-					if (isLoggedIn()) {
-						if ($_SESSION["user"]->eid == $item['author_eid']) {
-							if ($result) {
-								echo '<div class="form-group">
-							    <div class="container">
-							    	<select class="form-control" id="form_buyer">';
-									  	foreach ($result as $person) {
-									  		echo '<option value='.$person[0]['eid'].'>'.$person[0]['fname'].' '.$person[0]['lname'].'</option>';
-									  	}
-									echo '</select> 
-							    </div>
-							  </div>';
-							  echo '<div class="container"><div id="confirm_button" class="btn btn-primary btn-lg btn-block">Confirm sale!</div></div>'; 
-							}
-							else {
-								echo '<div class="container"><p class="lead text-muted textcenter">No buyers so far, please, check later.</p></div>';
-							}
-							echo'<br/>
-							  <div class="container"><div id="remove_button" class="btn btn-info btn-lg btn-block">Remove item</div></div>';
+				<div class="container">
+				<?php
+				$result = allBuyers($_GET['id']);
+				if (isLoggedIn()) {
+					if ($_SESSION["user"]->eid == $item['author_eid']) {
+						if ($result) {
+							echo '<div class="form-group">
+						    <div class="container">
+						    	<select class="form-control" id="form_buyer">';
+								  	foreach ($result as $person) {
+								  		echo '<option value='.$person[0]['eid'].'>'.$person[0]['fname'].' '.$person[0]['lname'].'</option>';
+								  	}
+								echo '</select> 
+						    </div>
+						  </div>';
+						  echo '<div class="container"><div id="confirm_button" class="btn btn-primary btn-lg btn-block">Confirm sale!</div></div>'; 
 						}
 						else {
-							$bought = 0;
-							foreach ($result as $person) {
-								if ($person[0]['eid'] == $_SESSION["user"]->eid) {
-									$bought = 1;
-								}
-							}
-							if ($bought == 1) {
-								echo '<div id="container"><p class="lead text-muted textcenter">Already sent buy request. Please, wait for seller to confirm it...</p></div>';
-							}
-							else {
-						 		echo '<div id="buy_button" class="btn btn-primary btn-lg btn-block">Buy now!</div>';
-						 	}
+							echo '<div class="container"><p class="lead text-muted textcenter">No buyers so far, please, check later.</p></div>';
 						}
+						echo'<br/>
+						  <div class="container"><div id="remove_button" class="btn btn-info btn-lg btn-block">Remove item</div></div>';
 					}
 					else {
-						echo '<div id="login_button" class="btn btn-info btn-lg btn-block">Login to buy...</div>';	
+						$bought = 0;
+						foreach ($result as $person) {
+							if ($person[0]['eid'] == $_SESSION["user"]->eid) {
+								$bought = 1;
+							}
+						}
+						if ($bought == 1) {
+							echo '<div id="container"><p class="lead text-muted textcenter">Already sent buy request. Please, wait for seller to confirm it...</p></div>';
+						}
+						else {
+					 		echo '<div id="buy_button" class="btn btn-primary btn-lg btn-block">Buy now!</div>';
+					 	}
 					}
-					?>
-					</div>
+				}
+				else {
+					echo '<div id="login_button" class="btn btn-info btn-lg btn-block">Login to buy...</div>';	
+				}
+				?>
 				</div>
-		</div>
+			</div>
 	</div>
 </div>
 

@@ -24,7 +24,7 @@
 		}
 		else {
 			$id = mysqli_fetch_assoc($result);
-			return $id;
+			return $id['id'];
 		}
 	}
 
@@ -49,8 +49,6 @@
 			$off->imgPath = "";
 		}
 
-		echo 'Image path: ' . $off->imgPath;
-
 		$query = "INSERT INTO Offers (userid,catid,name,description,postTime,picturePath)
 		VALUES ('$off->userID','$off->catID', '$off->name', '$off->description', NOW(),'$off->imgPath');";
 
@@ -60,7 +58,7 @@
 			exit();
 		} 
 
-		$selectID = 'SELECT max(id) FROM Offers;';
+		$selectID = 'SELECT MAX(id) FROM Offers;';
 		$selRes = mysqli_query($GLOBALS['db'],$selectID);
 		if(!$selRes){
 			echo mysqli_error($GLOBALS['db']);
@@ -72,7 +70,7 @@
     		$idRows[] = $r;
 		}
 
-		$offerid = $idRows[0]['id'];
+		$offerid = $idRows[0]['MAX(id)'];
 
 		$insertFPO = 'INSERT INTO FixedPriceOffers (offerid,price) VALUES ('.$offerid.','.$price.');';
 		$fpoRes = mysqli_query($GLOBALS['db'],$insertFPO);
@@ -82,8 +80,6 @@
 		} else {
 			echo 'true';
 		}
-
-
 	}
 
 	function removeOffer($offerID){

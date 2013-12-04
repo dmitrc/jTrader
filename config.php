@@ -32,8 +32,8 @@
 
     $now = date_create();
 
-    $filename = date_timestamp_get($now).'.'.$type;
-    $str = 'images/image' . $filename;
+    $filename = 'image'.date_timestamp_get($now).'.'.$type;
+    $str = 'images/' . $filename;
 
     if (file_put_contents(dirname(__FILE__).'/./'.$str, $data)) {
       return $filename;
