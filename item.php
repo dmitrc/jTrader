@@ -205,6 +205,10 @@
 	    });
 	  });
 
+	$("#buy_button").click(function () {
+		
+	});
+
 	$("#login_button").click(function () {
 	    window.location.href = "login.php";
 	 });

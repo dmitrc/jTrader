@@ -1,6 +1,7 @@
 <?php
     require_once(dirname(__FILE__).'/./user.php');
     require_once(dirname(__FILE__).'/./mail.php');
+    require_once(dirname(__FILE__).'/../config.php');
 
     if (isset($_POST['action'])) 
     {

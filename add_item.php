@@ -126,10 +126,10 @@
 
 		  <div class="form-group">
 		    <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-2 col-sm-4 col-lg-4 col-md-4">
-		      <div class="btn btn-default btn-block">Cancel</div>
+		      <div id="cancel_button" class="btn btn-default btn-block">Cancel</div>
 		    </div>
 		    <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-2 col-sm-4 col-lg-4 col-md-4">
-		    	<div class="btn btn-success btn-block">Submit!</div>
+		    	<div id = "submit_button" class="btn btn-success btn-block">Submit!</div>
 		    </div>
 		  </div>
 </form>
@@ -208,14 +208,7 @@
 <!-- Scripts -->
 
 <script>
- $("#logout").click(function () {
-    $.post("inc/api.php", { action:'logout'}, function(results){
-          	window.location.reload(true);
-    });
-  });
-</script>
 
-<script>
 	function handleFileSelect(evt) {
 
 	    var files = evt.target.files; // FileList object
@@ -234,18 +227,33 @@
 	      reader.onload = (function(theFile) {
 	        return function(e) {
 	          // Render thumbnail.
-	          console.log(e.target.result);
-	          document.getElementById('image_preview').innerHTML = ['<br/><div class="container well"><img class="img-responsive img-rounded center" src="', e.target.result,'" title="', escape(theFile.name), '"/></div>'].join('');
+	          document.getElementById('image_preview').innerHTML = '<br/><div class="container well"><img id="uploaded-img" class="img-responsive img-rounded center" src="'+ e.target.result+'" title="'+escape(theFile.name)+'"/></div>';
 	        };
 	      })(f);
 
 	      // Read in the image file as a data URL.
 	      reader.readAsDataURL(f);
 	    }
-  }
+ 	}
 
-  document.getElementById('form_image').addEventListener('change', handleFileSelect, false);
+  	document.getElementById('form_image').addEventListener('change', handleFileSelect, false);
+
+	 $("#logout").click(function () {
+	    $.post("inc/api.php", { action:'logout'}, function(results){
+	          	window.location.reload(true);
+	    });
+	  });
+
+	 $("#cancel_button").click(function () {
+	    window.location.href = "index.php";
+	  });
+
+	 $("#submit_button").click(function () {
+	    $.post("inc/api.php", { action:'saveBase64Image', args: [document.getElementById('uploaded-img').src]}, function(results){
+	          	console.log(results);
+	    });
+	  });
+
 </script>
-</script?
 </body>
 </html>
