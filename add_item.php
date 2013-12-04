@@ -257,22 +257,28 @@
 	  });
 
 	 $("#submit_button").click(function () {
-
-	 	// todo: Validate data!
 	 	
 	 	var userid = $("#userid").html();
 	 	var subcat = ($('#form_category option:selected').text()).split('/')[1].trim();
 	 	var name = $("#form_name").val();
 	 	var descr = $("#form_description").val();
 	 	var image = $("#uploaded_img").attr('src');
-	 	var price = $("#form_price").val(); 
+	 	var price = +($("#form_price").val()); 
 
-	 	console.log(userid);
-	 	console.log(subcat);
-	 	console.log(name);
-	 	console.log(descr);
-	 	console.log(image);
-	 	console.log(price);
+	 	if (!name || name == "") {
+	 		alert("Name is a mandatory field - please fill it and try again!");
+	 		return;
+	 	}
+
+	 	if (!descr || descr == "") {
+	 		alert("Description is a mandatory field - please fill it and try again!");
+	 		return;
+	 	}
+
+	 	if (!price || price == "" || isNaN(price)) {
+	 		alert("Price is a mandatory field - please enter a valid numeric price and try again!");
+	 		return;
+	 	}
 
 		$.post("inc/api.php", { action:'addOffer', args: [userid,subcat,name,descr,image,price]}, function(results){
 		 	if (results === "true") {
