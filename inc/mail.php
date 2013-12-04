@@ -62,7 +62,7 @@
 
             var_dump($result);
 
-            $query = "UPDATE Users SET rating=(rating+1) WHERE eid = $to;";
+            $query = "UPDATE Users SET rating=(rating+1) WHERE email = $to;";
             mysqli_query($GLOBALS['db'], $query);
         }
         else
