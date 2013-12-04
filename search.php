@@ -106,7 +106,7 @@
 	<div class="col-sm-9">
 		<div class="container">
 			<br/>
-			<p class="lead">Search results for query '<?php echo $_GET['query']; ?> :</p>
+			<p class="lead">Search results for query '<?php echo $_GET['query'];?>' :</p>
 		</div>
 		<div class="container">
 			<div class="row"><div class="container">
