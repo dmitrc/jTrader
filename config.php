@@ -22,6 +22,7 @@
   }
 
 
+  // move to utils.php, add a dot
   function saveBase64Image($data) {
     list($type, $data) = explode(';', $data);
     list(, $data) = explode(',', $data);
@@ -31,9 +32,15 @@
 
     $now = date_create();
 
-    $str = 'images/image'.date_timestamp_get($now).'.'.$type;
-    file_put_contents(dirname(__FILE__).'/./'.$str, $data);
+    $filename = date_timestamp_get($now).'.'.$type;
+    $str = 'images/image' . $filename;
 
-    return $str;
+    if (file_put_contents(dirname(__FILE__).'/./'.$str, $data)) {
+      echo $filename;
+    } else {
+      echo 'error';
+    }
+
+    return $filename;
   }
 ?>

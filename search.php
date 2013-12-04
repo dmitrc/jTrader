@@ -1,6 +1,7 @@
 <?php
 	error_reporting(0);
 	require_once(dirname(__FILE__).'/./inc/user.php');
+	require_once(dirname(__FILE__).'/./inc/categories.php');
 	session_start(); 
 ?>
 
@@ -68,58 +69,26 @@
 	<div class="col-sm-3 well">
 		<div class="container">
 			<h4>Categories:</h4>
-			<div class="panel-group" id="categories">
-				<div class="panel panel-default">
+			<?php
+				$categories = getCategories();
+
+				foreach ($categories as $category) {
+					echo '<div class="panel panel-default">
 					<div class="panel-heading">
-						<h5 class="panel-title"><a class="categories-toggle" data-toggle="collapse" data-parent="#categories" href="#categoriesOne">Group 1</a></h5>
+						<h5 class="panel-title">
+						<a href="category.php?name='.$category['category'].'">'.$category['category'].'</a></h5></div>
+					<div id="'.$category['category'].'">
+						<div class="panel-body">';
+					
+					foreach ($category['subcategories'] as $subcategory) {
+						echo '<a href="subcategory.php?name='.$subcategory.'">'.$subcategory.'</a><br/>';
+					}
+					
+					echo '</div>
 					</div>
-					<div id="categoriesOne" class="panel-collapse collapse">
-						<div class="panel-body">
-							Here will be list of subcategories.
-						</div>
-					</div>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h5 class="panel-title"><a class="categories-toggle" data-toggle="collapse" data-parent="#categories" href="#categoriesTwo">Group 2</a></h5>
-					</div>
-					<div id="categoriesTwo" class="panel-collapse collapse">
-						<div class="panel-body">
-							Here will be list of subcategories.
-						</div>
-					</div>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h5 class="panel-title"><a class="categories-toggle" data-toggle="collapse" data-parent="#categories" href="#categoriesThree">Group 3</a></h5>
-					</div>
-					<div id="categoriesThree" class="panel-collapse collapse">
-						<div class="panel-body">
-							Here will be list of subcategories.
-						</div>
-					</div>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h5 class="panel-title"><a class="categories-toggle" data-toggle="collapse" data-parent="#categories" href="#categoriesFour">Group 4</a></h5>
-					</div>
-					<div id="categoriesFour" class="panel-collapse collapse">
-						<div class="panel-body">
-							Here will be list of subcategories.
-						</div>
-					</div>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h5 class="panel-title"><a class="categories-toggle" data-toggle="collapse" data-parent="#categories" href="#categoriesFive">Group 5</a></h5>
-					</div>
-					<div id="categoriesFive" class="panel-collapse collapse">
-						<div class="panel-body">
-							Here will be list of subcategories.
-						</div>
-					</div>
-				</div>
-			</div>
+				</div>';
+				}
+			?>
 		</div>
 	</div>
 	<div class="col-sm-9">
