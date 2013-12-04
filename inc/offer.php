@@ -158,7 +158,7 @@
 	function getOfferID($offerID){
 		$offerID = mysqli_real_escape_string($GLOBALS['db'], $offerID);
 
-		$query = 'SELECT offerID FROM FixedPriceOffers WHERE offerid ='.$offerID.';';
+		$query = 'SELECT id FROM FixedPriceOffers WHERE offerid ='.$offerID.';';
 		$result = mysqli_query($GLOBALS['db'],$query);
 
 		if(!$result){
@@ -194,9 +194,9 @@
 
 		foreach($rows as $row){
 			if($row['buyerid']!=$buyerID){
-				echo "send e-mail to the suckers";
+				echo "send e-mail to the suckers / ";
 			} else {
-				echo "send e-mail to winner";
+				echo "send e-mail to winner / ";
 			}
 		}
 
@@ -215,6 +215,7 @@
 		$offerID = mysqli_real_escape_string($GLOBALS['db'], $offerID);
 
 		$fixedPriceOfferID = getOfferID($offerID);
+		var_export($fixedPriceOfferID);
 
 		$query = 'SELECT buyerid FROM FixedPriceBids WHERE fixedPriceOfferID ='.$fixedPriceOfferID.' ORDER BY bidtime ASC';
 

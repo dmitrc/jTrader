@@ -64,7 +64,8 @@
 </nav>
 
 <!-- Convert PHP variables to JS -->
-<div class="invisible" id="userid"><?php echo $_SESSION["user"]->id; ?></div>
+
+<div class="invisible" id="userid"><?php echo $_SESSION["user"]->eid; ?></div>
 <div class="invisible" id="offerid"><?php echo $_GET["id"]; ?></div>
 
 <!-- Main -->
@@ -126,16 +127,18 @@
 							    <div class="container">
 							    	<select class="form-control" id="form_buyer">';
 									  	foreach ($result as $person) {
-									  		echo '<option>'.$person[0]['fname'].' '.$person[0]['lname'].'</option>';
+									  		echo '<option value='.$person[0]['eid'].'>'.$person[0]['fname'].' '.$person[0]['lname'].'</option>';
 									  	}
 									echo '</select> 
 							    </div>
 							  </div>';
-							  echo '<div class="container"><div id="confirm_button" class="btn btn-primary btn-lg btn-block">Confirm sale!</div></div>';
+							  echo '<div class="container"><div id="confirm_button" class="btn btn-primary btn-lg btn-block">Confirm sale!</div></div>'; 
 							}
 							else {
 								echo '<div class="container"><p class="lead text-muted textcenter">No buyers so far, please, check later.</p></div>';
 							}
+							echo'<br/>
+							  <div class="container"><div id="remove_button" class="btn btn-info btn-lg btn-block">Remove item</div></div>';
 						}
 						else {
 					 		echo '<div id="buy_button" class="btn btn-primary btn-lg btn-block">Buy now!</div>';
@@ -237,8 +240,18 @@
 	});
 
 	$("#confirm_button").click(function () {
-		$.post("inc/api.php", { action:'logout'}, function(results){
-	          	window.location.reload(true);
+		$.post("inc/api.php", { action:'confirmBought', args:[$("#offerid").html(), $("#form_buyer").val()]}, function(results){
+	          console.log(results);
+	          alert("Successfully sold to " + $('#form_buyer option:selected').text()+"! :)");
+	          location.href = "index.php";
+	    });
+	});
+
+	$("#remove_button").click(function () {
+		$.post("inc/api.php", { action:'removeOffer', args:[$("#offerid").html()]}, function(results){
+	          	console.log(results);
+	          	alert("Successfully removed!");
+	          	location.href = "index.php";
 	    });
 	});
 
