@@ -141,33 +141,24 @@
 				<div class="col-lg-6 col-sm-6">
 					<div class="container well">
 						<h4>My items:</h4>
-						<div class="col-lg-3 col-sm-3 thumbnail">
-							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
-								<a href="item.php?id=5"><h5>Item 1</h5></a>
-								<p>50€</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-sm-3 thumbnail">
-							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
-								<a href="item.php?id=5"><h5>Item 2</h5></a>
-								<p>10€</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-sm-3 thumbnail">
-							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
-								<a href="item.php?id=5"><h5>Item 3</h5></a>
-								<p>70€</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-sm-3 thumbnail">
-							<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-							<div class="textcenter">
-								<a href="item.php?id=5"><h5>Item 4</h5></a>
-								<p>20€</p>
-							</div>
+						<?php
+							$result = getUserItems();
+							if (!$result) {
+								echo '<br/><br/><br/><p class="lead text-muted">Nothing here :(<br/>Would you like to <a href="add_item.php">add an item?</a></p><br/><br/>';
+							}
+							foreach ($result as $obj) {
+								if ($obj['picturePath'] == "") 
+									$obj['picturePath'] = "default.png";
+
+								echo '<div class="col-lg-3 col-sm-3 thumbnail">
+									<img src="images/'. $obj['picturePath'] .'" alt="'.$obj['name'].'" class="img-responsive img-rounded" width=100/>
+									<div class="textcenter">
+										<a href="item.php?id='.$obj['id'].'"><h5>'. $obj['name'] .'</h5></a>
+										<p class="text-success">'.$obj['price'].' &euro;</p>
+									</div>
+								</div>';
+							}
+						?>
 						</div>
 					</div>
 				</div>

@@ -154,12 +154,11 @@
                 array_push($json, $row);
             }
 
-            $jsonstring = json_encode($json);
-            echo $jsonstring;
+            return $json;
         }
         else
         {
-            echo 'false';
+            return false;
         }
     }
 
