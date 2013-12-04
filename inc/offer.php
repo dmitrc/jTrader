@@ -11,6 +11,8 @@
 	}
 
 	function getIdBySubType($subCat){
+        $subCat = mysqli_real_escape_string($GLOBALS['db'], $subCat);
+
 		$query = "SELECT Categories.id FROM `Categories` WHERE Categories.subtype=$subCat ;";
 
 		$result = mysqli_query($GLOBALS['db'],$query);
@@ -26,11 +28,11 @@
 	}
 
 	function addOffer( $userId, $subCatID, $name, $description){
-		$off = new Offer();
-		$off->userID = $userId;
+ 		$off = new Offer();
+		$off->userID = mysqli_real_escape_string($GLOBALS['db'], $userId);
 		$off->catID = getIdBySubType($subCatID);
-		$off->name = $name;
-		$off->description = $description;
+		$off->name = mysqli_real_escape_string($GLOBALS['db'], $name);
+		$off->description = mysqli_real_escape_string($GLOBALS['db'], $description);
 
 		$query = "INSERT INTO Offers (userid,catid,name,description,postTime) 
 		VALUES ($off->userId,$off->catID, $off->name, $off->description, NOW());";
@@ -45,6 +47,7 @@
 	}
 
 	function removeOffer($offerID){
+		$offerID = mysqli_real_escape_string($GLOBALS['db'], $offerID);
 		$query = "DELETE FROM Offers".
 					" WHERE Offers.id = $offerID";
 
@@ -57,6 +60,7 @@
 	}
 	
 	function getOfferInfo($ID){
+		$ID = mysqli_real_escape_string($GLOBALS['db'], $ID);
 		$initialInfoQuery = "SELECT id, userid,catid,name,description,postTime, picturePath FROM Offers WHERE id = $ID;";
 		
 		$initialResult = mysqli_query($GLOBALS['db'],$initialInfoQuery);
@@ -123,6 +127,8 @@
 
 
 	function buyItem($buyerID, $offerID){
+		$offerID = mysqli_real_escape_string($GLOBALS['db'], $offerID);
+		$buyerID = mysqli_real_escape_string($GLOBALS['db'], $buyerID);
 
 		$offerQuery = 'SELECT id FROM FixedPriceOffers where offerid = '.$offerID.';';
 		$offerResult = mysqli_query($GLOBALS['db'],$offerQuery);
@@ -149,6 +155,8 @@
 	}
 
 	function getOfferID($offerID){
+		$offerID = mysqli_real_escape_string($GLOBALS['db'], $offerID);
+
 		$query = 'SELECT offerID FROM FixedPriceOffers WHERE offerid ='.$offerID.';';
 		$result = mysqli_query($GLOBALS['db'],$query);
 
@@ -165,6 +173,8 @@
 	}
 
 	function confirmBought($offerID, $buyerID){
+		$offerID = mysqli_real_escape_string($GLOBALS['db'], $offerID);
+		$buyerID = mysqli_real_escape_string($GLOBALS['db'], $buyerID);
 
 		$fpoID = getOfferID($offerID);
 
@@ -201,6 +211,7 @@
 
 
 	function allBuyers($offerID){
+		$offerID = mysqli_real_escape_string($GLOBALS['db'], $offerID);
 
 		$fixedPriceOfferID = getOfferID($offerID);
 

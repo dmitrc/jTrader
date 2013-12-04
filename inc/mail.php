@@ -3,6 +3,9 @@
 
     function sendRequestEmail($idTo, $offerid)
     {
+        $idTo = mysqli_real_escape_string($GLOBALS['db'], $idTo);
+        $offerid = mysqli_real_escape_string($GLOBALS['db'], $offerid);
+
         $eid = $_SESSION["user"]->eid;
         $from = $_SESSION["user"]->email;
         $name = $_SESSION["user"]->account;
@@ -63,6 +66,9 @@
 
     function sendConfirmationEmail($idTo, $offerid)
     {
+        $idTo = mysqli_real_escape_string($GLOBALS['db'], $idTo);
+        $offerid = mysqli_real_escape_string($GLOBALS['db'], $offerid);
+
         $eid = $_SESSION["user"]->eid;
         $from = $_SESSION["user"]->email;
         $name = $_SESSION["user"]->account;
@@ -123,6 +129,9 @@
 
     function sendRejectionEmail($idTo, $offerid)
     {
+        $idTo = mysqli_real_escape_string($GLOBALS['db'], $idTo);
+        $offerid = mysqli_real_escape_string($GLOBALS['db'], $offerid);
+        
         $eid = $_SESSION["user"]->eid;
         $from = $_SESSION["user"]->email;
         $name = $_SESSION["user"]->account;

@@ -99,8 +99,8 @@
       }
     }
 
-    function getUserInfo($eid)
-    {
+    function getUserInfo()
+    {   
         $accountname = $_SESSION["user"]->account;
         $eid = $_SESSION["user"]->eid;
         $fname = $_SESSION["user"]->fname;
