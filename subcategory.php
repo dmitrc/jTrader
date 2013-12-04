@@ -87,15 +87,15 @@
 					echo '<div class="panel panel-default">
 					<div class="panel-heading">
 						<h5 class="panel-title">
-						<a class="categories-toggle" data-toggle="collapse" data-parent="#categories" href="#'.$category['category'].'">'.$category['category'].'</a></h5></div>
-					<div id="'.$category['category'].'" class="panel-collapse collapse">
+						<a class="categories-toggle" data-toggle="collapse" data-parent="#categories" href="#'.preg_replace('/[\s\W]+/', "", $category['category']).'">'.$category['category'].'</a></h5></div>
+					<div id="'.preg_replace('/[\s\W]+/', "", $category['category']).'" class="panel-collapse collapse">
 						<div class="panel-body">';
 					
 					foreach ($category['subcategories'] as $subcategory) {
-						echo '<a href="subcategory.php?name='.$subcategory.'">'.$subcategory.'</a><br/>';
+						echo '<a href="subcategory.php?name='.urlencode($subcategory).'">'.$subcategory.'</a><br/>';
 					}
 					
-					echo '<br/><a href="category.php?name='.$category['category'].'">All '.$category['category'].'</a></div>
+					echo '<br/><a href="category.php?name='.urlencode($category['category']).'">All '.$category['category'].'</a></div>
 					</div>
 				</div>';
 				}
@@ -235,8 +235,8 @@
     });
   });
 
-  $("#search_button").click( function() {
- 	location.href = "search.php?query="+$("#search_bar").val();
+ $("#search_button").click( function() {
+ 	location.href = "search.php?query="+encodeURIComponent($("#search_bar").val());
  });
 
   $('#search_bar').keydown(function(event){    

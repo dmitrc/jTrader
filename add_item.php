@@ -293,7 +293,7 @@
 	});
 
  $("#search_button").click( function() {
- 	location.href = "search.php?query="+$("#search_bar").val();
+ 	location.href = "search.php?query="+encodeURIComponent($("#search_bar").val());
  });
 
  $('#search_bar').keydown(function(event){    

@@ -304,8 +304,7 @@
 	function hotOffers(){
 		$query = 'SELECT FixedPriceOffers.price, Offers.picturePath, Offers.name, Offers.id
 		FROM FixedPriceOffers, Offers
-		WHERE Offers.id = FixedPriceOffers.offerid
-		LIMIT 4';
+		WHERE Offers.id = FixedPriceOffers.offerid;';
 
 		$result = mysqli_query($GLOBALS['db'],$query);
 		if(!$result){
@@ -316,7 +315,8 @@
 			$rows[] = $r;
 		}
 
-		return $rows;
+		shuffle($rows);
+		return array_slice($rows, 0, 4);;
 	}
 
 
