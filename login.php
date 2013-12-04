@@ -78,12 +78,14 @@
 	<div class="container col-lg-4 col-sm-6 col-lg-offset-4 col-sm-offset-3 well well-lg">
 
       <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in with your CampusNet data:</h2>
+        <h2 class="form-signin-heading textcenter">Please sign in with your CampusNet data:</h2>
+        <br/>
         <input type="text" class="form-control" id="form_name" placeholder="Username" autofocus>
         <input type="password" class="form-control" id="form_pass" placeholder="Password">
         <label class="checkbox">
           <input type="checkbox" value="remember-me"> Remember me
         </label>
+        <br/>
         <div class="login_button btn btn-lg btn-primary btn-block">Sign in</div>
       </form>
 
