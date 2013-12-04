@@ -160,12 +160,15 @@
 			$rows[] = $r;
 		}
 
-		return $rows[0]['offerID'];
+		$ret = $rows[0]['offerID'];
+		return $ret;
 	}
 
 	function confirmBought($offerID, $buyerID){
+
 		$fpoID = getOfferID($offerID);
 
+		
 		$query = 'SELECT buyerid FROM FixedPriceBids WHERE fixedPriceOfferID ='.$fpoID.';';
 
 		$result = mysqli_query($GLOBALS['db'],$query);
@@ -179,7 +182,7 @@
 		}
 
 		foreach($rows as $row){
-			if($row['buyerid']!=$buyerid){
+			if($row['buyerid']!=$buyerID){
 				echo "send e-mail to the suckers";
 			} else {
 				echo "send e-mail to winner";
@@ -187,7 +190,7 @@
 		}
 
 		$deleteQuery = 'DELETE FROM Offers WHERE id = '.$offerID.';';
-		$delResult = mysqli_error($GLOBALS['db'],$deleteQuery);
+		$delResult = mysqli_query($GLOBALS['db'],$deleteQuery);
 		if(!$delResult){
 			echo 'false';
 			//die('Query failed with the error: ' . mysqli_error($GLOBALS['db']) . '<br/><br/>Failing query: ' . $deleteQuery);			
