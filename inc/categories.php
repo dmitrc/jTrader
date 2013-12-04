@@ -19,7 +19,7 @@
 
                 while($subcategory = mysqli_fetch_array($result2)) 
                 {
-                    array_push($subcategories, $subcategory)
+                    array_push($subcategories, $subcategory['subtype']);
                 }
 
                 $dict = array(
