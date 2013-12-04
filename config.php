@@ -36,11 +36,9 @@
     $str = 'images/image' . $filename;
 
     if (file_put_contents(dirname(__FILE__).'/./'.$str, $data)) {
-      echo $filename;
+      return $filename;
     } else {
-      echo 'error';
+      return false;
     }
-
-    return $filename;
   }
 ?>

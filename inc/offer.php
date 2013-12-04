@@ -8,50 +8,62 @@
 		var $name;
 		var $description;
 		var $postTime;
+		var $imgPath;
 	}
 
 	function getIdBySubType($subCat){
         $subCat = mysqli_real_escape_string($GLOBALS['db'], $subCat);
 
-		$query = "SELECT Categories.id FROM `Categories` WHERE Categories.subtype=$subCat ;";
+		$query = "SELECT Categories.id FROM `Categories` WHERE Categories.subtype = '$subCat';";
 
 		$result = mysqli_query($GLOBALS['db'],$query);
 
 		if (!$result) {
-    		die('Query failed with the error: ' . mysqli_error() . '<br/><br/>Failing query: ' . $query);
+    		echo mysqli_error($GLOBALS['db']);
+    		exit();
 		}
 		else {
 			$id = mysqli_fetch_assoc($result);
-			
 			return $id;
 		}
 	}
 
 	function addOffer( $userId, $subCatID, $name, $description, $image, $price){
+
  		$off = new Offer();
 		$off->userID = mysqli_real_escape_string($GLOBALS['db'], $userId);
 		$off->catID = getIdBySubType($subCatID);
 		$off->name = mysqli_real_escape_string($GLOBALS['db'], 
 			$name);
 		$off->description = mysqli_real_escape_string($GLOBALS['db'], $description);
-		$off->price = mysqli_real_escape_string($GLOBALS['db'],$$price);
+		$off->price = mysqli_real_escape_string($GLOBALS['db'],$price);
 
-		//what to do with pic validation
-		$imgPath = saveBase64Image($image);
+		if ($image) {
+			$off->imgPath = saveBase64Image($image);
+			if (!$off->imgPath) {
+				// Image uploading failed :(
+				$off->imgPath = "";
+			}
+		}
+		else {
+			$off->imgPath = "";
+		}
 
-		$query = "INSERT INTO Offers (userid,catid,name,description,postTime, picturePath) 
-		VALUES ($off->userId,$off->catID, $off->name, $off->description, NOW(),$imgPath);";
+		echo 'Image path: ' . $off->imgPath;
+
+		$query = "INSERT INTO Offers (userid,catid,name,description,postTime,picturePath)
+		VALUES ('$off->userID','$off->catID', '$off->name', '$off->description', NOW(),'$off->imgPath');";
 
 		$result = mysqli_query($GLOBALS['db'],$query);
 		if(!$result){
-			echo 'false';
+			echo mysqli_error($GLOBALS['db']);
 			exit();
 		} 
 
 		$selectID = 'SELECT max(id) FROM Offers;';
 		$selRes = mysqli_query($GLOBALS['db'],$selectID);
 		if(!$selRes){
-			echo 'false';
+			echo mysqli_error($GLOBALS['db']);
 			exit();
 		}
 		$idRows = Array();
@@ -65,7 +77,7 @@
 		$insertFPO = 'INSERT INTO FixedPriceOffers (offerid,price) VALUES ('.$offerid.','.$price.');';
 		$fpoRes = mysqli_query($GLOBALS['db'],$insertFPO);
 		if(!$fpoRes){
-			echo 'false';
+			echo mysqli_error($GLOBALS['db']);
 			exit();
 		} else {
 			echo 'true';

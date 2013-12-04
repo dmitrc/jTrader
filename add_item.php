@@ -63,6 +63,10 @@
 	</div>
 </nav>
 
+<!-- Convert PHP variables to JS -->
+
+<div class="invisible" id="userid"><?php echo $_SESSION["user"]->eid; ?></div>
+
 <!-- Main -->
 
 <?php
@@ -231,7 +235,7 @@
 	      reader.onload = (function(theFile) {
 	        return function(e) {
 	          // Render thumbnail.
-	          document.getElementById('image_preview').innerHTML = '<br/><div class="container well"><img id="uploaded-img" class="img-responsive img-rounded center" src="'+ e.target.result+'" title="'+escape(theFile.name)+'"/></div>';
+	          document.getElementById('image_preview').innerHTML = '<br/><div class="container well"><img id="uploaded_img" class="img-responsive img-rounded center" src="'+ e.target.result+'" title="'+escape(theFile.name)+'"/></div>';
 	        };
 	      })(f);
 
@@ -255,31 +259,32 @@
 	 $("#submit_button").click(function () {
 
 	 	// todo: Validate data!
+	 	
+	 	var userid = $("#userid").html();
+	 	var subcat = ($('#form_category option:selected').text()).split('/')[1].trim();
+	 	var name = $("#form_name").val();
+	 	var descr = $("#form_description").val();
+	 	var image = $("#uploaded_img").attr('src');
+	 	var price = $("#form_price").val(); 
 
-	 	// Part 1. Upload image.
-	    $.post("inc/api.php", { action:'saveBase64Image', args: [document.getElementById('uploaded-img').src]}, function(imageurl){
-          	if (imageurl === "error") {
-          		alert('Uploading image failed. Please, try again later.');
-          	}
-          	else {
-          		// Part 2. Get current user id.
-          		$.post("inc/api.php", {action:'getUserID'}, function(userid) {
+	 	console.log(userid);
+	 	console.log(subcat);
+	 	console.log(name);
+	 	console.log(descr);
+	 	console.log(image);
+	 	console.log(price);
 
-          			// Part 3. Submit that S**t!
-          			// todo: Add price and picture to the API.
-          			$.post("inc/api.php", { action:'addOffer', args: [userid,"Mobiles","Sample","Sample description",imageurl]}, function(results){
-	          		 	if (results === "true") {
-	          		 		alert("Successfully posted!");
-	          		 		location.href = "index.php";
-	          		 	}
-	          		 	else {
-	          		 		alert("There was an error adding an offer. This shouldn't really happen.... Sorry :(");
-	          		 	}
-          			});
-          		});
-          	}
-	    });
-	  });
+		$.post("inc/api.php", { action:'addOffer', args: [userid,subcat,name,descr,image,price]}, function(results){
+		 	if (results === "true") {
+		 		alert("Successfully posted!");
+		 		location.href = "index.php";
+		 	}
+		 	else {
+		 		console.log(results);
+		 		alert("There was an error adding an offer. This shouldn't really happen.... Sorry :(");
+		 	}
+		});
+	});
 
  $("#search_button").click( function() {
  	location.href = "search.php?query="+$("#search_bar").val();
