@@ -66,7 +66,7 @@
 <!-- Main -->
 
 <?php
-	if (!isset($_GET['query'])) {
+	if (!isset($_GET['query']) || $_GET['query'] === "") {
 		echo '<div class="row"><div class = "container well"><br/><p class = "lead text-danger textcenter">There is no data to display, as search query wasn\'t provided!</p></div></div>';
 		exit();
 	}

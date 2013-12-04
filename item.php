@@ -66,7 +66,7 @@
 <!-- Main -->
 
 <?php
-	if (!isset($_GET['id'])) {
+	if (!isset($_GET['id']) || $_GET['id'] === "") {
 		echo '<div class="row"><div class = "container well"><br/><p class = "lead text-danger textcenter">There is no data to display, as item id wasn\'t provided!</p></div></div>';
 		exit();
 	}

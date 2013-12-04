@@ -66,7 +66,7 @@
 <!-- Main -->
 
 <?php
-	if (!isset($_GET['name'])) {
+	if (!isset($_GET['name']) || $_GET['name'] === "") {
 		echo '<div class="row"><div class = "container well"><br/><p class = "lead text-danger textcenter">There is no data to display, as category name wasn\'t provided!</p></div></div>';
 		exit();
 	}
