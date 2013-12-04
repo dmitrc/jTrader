@@ -16,7 +16,6 @@
                 $type = $category['type'];
 
                 $query = "SELECT Categories.subtype FROM Categories WHERE Categories.type='$type';";
-
                 $result2 = mysqli_query($GLOBALS['db'], $query);
 
                 if ($result2) {
