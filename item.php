@@ -40,9 +40,9 @@
 			</ul>
 			<form class="navbar-form navbar-left" role="search">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search">
+					<input id="search_bar" type="text" class="form-control" placeholder="Search">
 				</div>
-				<button type="submit" class="btn btn-default">Go!</button>
+				<div id="search_button" class="btn btn-default">Go!</div>
 			</form>
 			<ul class="navbar-nav nav navbar-right">
 				<li class="active"><a href="index.php">Home</a></li>
@@ -214,6 +214,18 @@
 	$("#login_button").click(function () {
 	    window.location.href = "login.php";
 	 });
+
+	 $("#search_button").click( function() {
+ 	location.href = "search.php?query="+$("#search_bar").val();
+ });
+
+	 $('#search_bar').keydown(function(event){    
+      if(event.keyCode==13){
+           $('#search_button').trigger('click');
+           return false;
+      }
+  });
+
  
 </script>
 
