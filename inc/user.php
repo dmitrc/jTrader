@@ -44,6 +44,8 @@
 
 	function login($username, $password) {
 
+        // todo: Echo an error message instead of 'false'
+        
         error_reporting(0);
         $conn = ldap_connect("jacobs.jacobs-university.de",389);
         if (!ldap_bind($conn,$username."@jacobs.jacobs-university.de",$password)) {
