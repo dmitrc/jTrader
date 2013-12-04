@@ -36,7 +36,7 @@
 
                 if (mysqli_query($GLOBALS['db'],$sql))
                 {
-                  echo 'true';
+                    // good!
                 }
             }
 		}
