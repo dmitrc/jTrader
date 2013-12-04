@@ -13,8 +13,8 @@
             while($category = mysqli_fetch_array($result)) 
             {
                 $subcategories = array();
-
-                $query = "SELECT Categories.subtype FROM Categories WHERE Categories.type=$category['type'];";
+                $type = $category['type'];
+                $query = "SELECT Categories.subtype FROM Categories WHERE Categories.type=$type;";
                 $result2 = mysqli_query($GLOBALS['db'], $query);
 
                 while($subcategory = mysqli_fetch_array($result2)) 
