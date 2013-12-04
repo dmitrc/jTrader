@@ -85,11 +85,13 @@
 
 <div class="row">
 	<div class="container col-lg-6 col-sm-6 col-md-6 well">
-		<div class="row"><div class="container">
+		<div class="row">
+			<div class="container col-lg-10 col-sm-10 col-md-10 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
 			<?php
-				echo '<img class="center" src="images/'.$item['picturePath'].'" alt="'.$item['name'].'" width=400 class="img-responsive img-rounded">';
+				echo '<img src="images/'.$item['picturePath'].'" alt="'.$item['name'].'" class="center img-responsive img-rounded">';
 			?>
-		</div></div>
+			</div>
+		</div>
 		<div class="row textcenter"><div class="container">
 			<br/>
 			<p class="lead"><?php echo $item['name']; ?></p>

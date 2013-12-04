@@ -2,6 +2,7 @@
 	error_reporting(0);
 	require_once(dirname(__FILE__).'/./inc/user.php');
 	require_once(dirname(__FILE__).'/./inc/categories.php');
+	require_once(dirname(__FILE__).'/./inc/utils.php');
 	session_start(); 
 ?>
 
@@ -71,7 +72,8 @@
 		exit();
 	}
 	else {
-		# todo...
+		$results = searchBySubCat($_GET['name']);
+		$results = array_chunk($results, 6);
 	}
 ?>
 
@@ -108,52 +110,37 @@
 			<br/>
 			<p class="lead"><?php echo $_GET['name']; ?> :</p>
 		</div>
-		<div class="container">
-			<div class="row"><div class="container">
-				<div class="col-lg-2 col-sm-2 thumbnail">
-						<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-						<div class="textcenter">
-							<a href="item.php?id=5"><h5>Item 1</h5></a>
-							<p >50€</p>
+		<?php
+			if (!$results) {
+				echo '<div class="container well">
+				<p class="lead text-danger textcenter">Nothing found :(</p>
+					</div>';
+			}
+			else {
+				foreach ($results as $chunk) {
+					echo '<div class="container">
+							<div class="row">
+								<div class="container">';
+
+					foreach ($chunk as $obj) {
+						if ($obj['picturePath'] == "") 
+							$obj['picturePath'] = "default.png";
+
+						echo '<div class="col-lg-2 col-sm-2 thumbnail">
+							<img src="images/'. $obj['picturePath'] .'" alt="'.$obj['name'].'" class="img-responsive img-rounded" width=100/>
+							<div class="textcenter">
+								<a href="item.php?id='.$obj['id'].'"><h5>'. $obj['name'] .'</h5></a>
+								<p class="text-success">'.$obj['price'].' &euro;</p>
+							</div>
+						</div>';
+					}
+
+					echo '</div>
 						</div>
-					</div>
-					<div class="col-lg-2 col-sm-2 thumbnail">
-						<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-						<div class="textcenter">
-							<a href="item.php?id=5"><h5>Item 2</h5></a>
-							<p>10€</p>
-						</div>
-					</div>
-					<div class="col-lg-2 col-sm-2 thumbnail">
-						<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-						<div class="textcenter">
-							<a href="item.php?id=5"><h5>Item 3</h5></a>
-							<p>70€</p>
-						</div>
-					</div>
-					<div class="col-lg-2 col-sm-2 thumbnail">
-						<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-						<div class="textcenter">
-							<a href="item.php?id=5"><h5>Item 4</h5></a>
-							<p>20€</p>
-						</div>
-					</div>
-					<div class="col-lg-2 col-sm-2 thumbnail">
-						<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-						<div class="textcenter">
-							<a href="item.php?id=5"><h5>Item 5</h5></a>
-							<p>50€</p>
-						</div>
-					</div>
-					<div class="col-lg-2 col-sm-2 thumbnail">
-						<img src="http://placehold.it/100x100" alt="Img" class="img-responsive img-rounded">
-						<div class="textcenter">
-							<a href="item.php?id=5"><h5>Item 6</h5></a>
-							<p>10€</p>
-						</div>
-					</div>
-				</div></div>
-		</div>
+					</div>';
+				}
+			}
+		?>
 	</div>
 </div>
 
