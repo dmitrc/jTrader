@@ -246,7 +246,7 @@
 	$("#buy_button").click(function () {
 		$.post("inc/api.php", { action:'buyItem', args:[$("#userid").html(), $("#offerid").html()]}, function(results){
 	          	console.log(results);
-	          	//location.reload();
+	          	location.reload();
 	    });
 	});
 
