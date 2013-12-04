@@ -63,6 +63,10 @@
 	</div>
 </nav>
 
+<!-- Convert PHP variables to JS -->
+<div class="invisible" id="userid"><?php echo $_SESSION["user"]->id; ?></div>
+<div class="invisible" id="offerid"><?php echo $_GET["id"]; ?></div>
+
 <!-- Main -->
 
 <?php
@@ -115,15 +119,33 @@
 					<div class="container">
 					<?php
 					if (isLoggedIn()) {
-					 	echo '<div id="buy_button" class="btn btn-primary btn-lg btn-block">Buy now!</div>';
+						if ($_SESSION["user"]->eid === $item['author_eid']) {
+							$result = allBuyers($_GET['id']);
+							if ($result) {
+								echo '<div class="form-group">
+							    <div class="container">
+							    	<select class="form-control" id="form_buyer">';
+									  	foreach ($result as $person) {
+									  		echo '<option>'.$person[0]['fname'].' '.$person[0]['lname'].'</option>';
+									  	}
+									echo '</select> 
+							    </div>
+							  </div>';
+							  echo '<div class="container"><div id="confirm_button" class="btn btn-primary btn-lg btn-block">Confirm sale!</div></div>';
+							}
+							else {
+								echo '<div class="container"><p class="lead text-muted textcenter">No buyers so far, please, check later.</p></div>';
+							}
+						}
+						else {
+					 		echo '<div id="buy_button" class="btn btn-primary btn-lg btn-block">Buy now!</div>';
+					 	}
 					}
 					else {
 						echo '<div id="login_button" class="btn btn-info btn-lg btn-block">Login to buy...</div>';	
 					}
 					?>
 					</div>
-
-					<!-- todo: Add extra options for the seller -->
 				</div>
 		</div>
 	</div>
@@ -139,6 +161,7 @@
     	</div>
 	</div>
 </div>
+
 
 <!-- Common modal windows -->
 
@@ -208,7 +231,15 @@
 	  });
 
 	$("#buy_button").click(function () {
+		$.post("inc/api.php", { action:'buyItem', args:[$("#userid").html(), $("#offerid").html()]}, function(results){
+	          	console.log(results);
+	    });
+	});
 
+	$("#confirm_button").click(function () {
+		$.post("inc/api.php", { action:'logout'}, function(results){
+	          	window.location.reload(true);
+	    });
 	});
 
 	$("#login_button").click(function () {

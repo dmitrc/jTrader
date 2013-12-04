@@ -74,7 +74,7 @@
     		$iniRows[] = $r;
 		}
 		//user info
-		$getUserNameQuery = 'SELECT fname,lname FROM Users WHERE eid = '.$iniRows[0]['userid'].';';
+		$getUserNameQuery = 'SELECT fname,lname, eid FROM Users WHERE eid = '.$iniRows[0]['userid'].';';
 
 		$userResult = mysqli_query($GLOBALS['db'],$getUserNameQuery);
 
@@ -88,6 +88,7 @@
 		}
 
 		$author = $userRows[0]['fname'].' '.$userRows[0]['lname'];
+		$eid = $userRows[0]['eid'];
 		$name = $iniRows[0]['name'];
 		$description = $iniRows[0]['description'];
 		$time = $iniRows[0]['postTime'];
@@ -120,7 +121,7 @@
 
 		$price = $fpoRows[0]['price'];
 
-		$arr = array( 'author'  => $author, 'name' => $name, 'description' => $description, 'time' => $time , 'picturePath' => $pic, 'category' => $category,'subcategory' =>  $subcategory, 'price' => $price );
+		$arr = array( 'author_eid' => $eid, 'author'  => $author, 'name' => $name, 'description' => $description, 'time' => $time , 'picturePath' => $pic, 'category' => $category,'subcategory' =>  $subcategory, 'price' => $price );
 
 		return $arr;
 	}
@@ -230,7 +231,7 @@
 		$outArray = Array();
 
 		foreach($rows as $row){
-			$userQuery = 'SELECT name, fname, lname, eid FROM Users WHERE eid ='.$row['buyerid'].';';
+			$userQuery = 'SELECT fname, lname, eid FROM Users WHERE eid ='.$row['buyerid'].';';
 			$userResult = mysqli_query($GLOBALS['db'],$userQuery);
 			if(!$userResult){
 				die('Query failed with the error: ' . mysqli_error($GLOBALS['db']) . '<br/><br/>Failing query: ' . $userQuery);			
@@ -243,7 +244,7 @@
 			$outArray[] = $uRows;
 		}
 
-		echo json_encode($outArray);
+		return $outArray;
 	}
 
 	function recentOffers(){
