@@ -186,7 +186,7 @@
 	function getOfferID($offerID){
 		$offerID = mysqli_real_escape_string($GLOBALS['db'], $offerID);
 
-		$query = 'SELECT offerID FROM FixedPriceOffers WHERE offerid ='.$offerID.';';
+		$query = 'SELECT id FROM FixedPriceOffers WHERE offerid ='.$offerID.';';
 		$result = mysqli_query($GLOBALS['db'],$query);
 
 		if(!$result){
@@ -197,7 +197,7 @@
 			$rows[] = $r;
 		}
 
-		$ret = $rows[0]['offerID'];
+		$ret = $rows[0]['id'];
 		return $ret;
 	}
 
