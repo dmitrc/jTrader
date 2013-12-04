@@ -119,9 +119,9 @@
 
 					<div class="container">
 					<?php
+					$result = allBuyers($_GET['id']);
 					if (isLoggedIn()) {
-						if ($_SESSION["user"]->eid === $item['author_eid']) {
-							$result = allBuyers($_GET['id']);
+						if ($_SESSION["user"]->eid == $item['author_eid']) {
 							if ($result) {
 								echo '<div class="form-group">
 							    <div class="container">
@@ -141,8 +141,19 @@
 							  <div class="container"><div id="remove_button" class="btn btn-info btn-lg btn-block">Remove item</div></div>';
 						}
 						else {
-					 		echo '<div id="buy_button" class="btn btn-primary btn-lg btn-block">Buy now!</div>';
-					 	}
+							$bought = 0;
+							foreach ($result as $person) {
+								if ($person[0]['eid'] == $_SESSION["user"]->eid) {
+									$bought = 1;
+								}
+							}
+							if ($bought == 1) {
+								echo '<div id="container"><p class="lead text-muted textcenter">Already sent buy request. Please, wait for seller to confirm it...</p></div>';
+							}
+							else {
+						 		echo '<div id="buy_button" class="btn btn-primary btn-lg btn-block">Buy now!</div>';
+						 	}
+						}
 					}
 					else {
 						echo '<div id="login_button" class="btn btn-info btn-lg btn-block">Login to buy...</div>';	
@@ -236,6 +247,7 @@
 	$("#buy_button").click(function () {
 		$.post("inc/api.php", { action:'buyItem', args:[$("#userid").html(), $("#offerid").html()]}, function(results){
 	          	console.log(results);
+	          	location.reload();
 	    });
 	});
 

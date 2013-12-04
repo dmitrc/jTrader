@@ -62,7 +62,7 @@
 
 		$offerid = $idRows[0]['id'];
 
-		$insertFPO = 'INSERT INTO FixedPriceOffers (offerid,price) VALUES ('.$offerid.$','.$price.');';
+		$insertFPO = 'INSERT INTO FixedPriceOffers (offerid,price) VALUES ('.$offerid.','.$price.');';
 		$fpoRes = mysqli_query($GLOBALS['db'],$insertFPO);
 		if(!$fpoRes){
 			echo 'false';
@@ -231,8 +231,7 @@
 		$deleteQuery = 'DELETE FROM Offers WHERE id = '.$offerID.';';
 		$delResult = mysqli_query($GLOBALS['db'],$deleteQuery);
 		if(!$delResult){
-			echo 'false';
-			//die('Query failed with the error: ' . mysqli_error($GLOBALS['db']) . '<br/><br/>Failing query: ' . $deleteQuery);			
+			echo 'false';			
 		} else {
 			echo 'true';
 		}
@@ -243,7 +242,6 @@
 		$offerID = mysqli_real_escape_string($GLOBALS['db'], $offerID);
 
 		$fixedPriceOfferID = getOfferID($offerID);
-		var_export($fixedPriceOfferID);
 
 		$query = 'SELECT buyerid FROM FixedPriceBids WHERE fixedPriceOfferID ='.$fixedPriceOfferID.' ORDER BY bidtime ASC';
 
