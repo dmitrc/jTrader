@@ -27,22 +27,50 @@
 		}
 	}
 
-	function addOffer( $userId, $subCatID, $name, $description){
+	function addOffer( $userId, $subCatID, $name, $description, $image, $price){
  		$off = new Offer();
 		$off->userID = mysqli_real_escape_string($GLOBALS['db'], $userId);
 		$off->catID = getIdBySubType($subCatID);
-		$off->name = mysqli_real_escape_string($GLOBALS['db'], $name);
+		$off->name = mysqli_real_escape_string($GLOBALS['db'], 
+			$name);
 		$off->description = mysqli_real_escape_string($GLOBALS['db'], $description);
+		$off->price = mysqli_real_escape_string($GLOBALS['db'],$$price);
 
-		$query = "INSERT INTO Offers (userid,catid,name,description,postTime) 
-		VALUES ($off->userId,$off->catID, $off->name, $off->description, NOW());";
+		//what to do with pic validation
+		$imgPath = saveBase64Image($image);
+
+		$query = "INSERT INTO Offers (userid,catid,name,description,postTime, picturePath) 
+		VALUES ($off->userId,$off->catID, $off->name, $off->description, NOW(),$imgPath);";
 
 		$result = mysqli_query($GLOBALS['db'],$query);
 		if(!$result){
 			echo 'false';
+			exit();
+		} 
+
+		$selectID = 'SELECT max(id) FROM Offers;';
+		$selRes = mysqli_query($GLOBALS['db'],$selectID);
+		if(!$selRes){
+			echo 'false';
+			exit();
+		}
+		$idRows = Array();
+		$idRows = array();
+		while($r = mysqli_fetch_assoc($selRes)){
+    		$idRows[] = $r;
+		}
+
+		$offerid = $idRows[0]['id'];
+
+		$insertFPO = 'INSERT INTO FixedPriceOffers (offerid,price) VALUES ('.$offerid.$','.$price.');';
+		$fpoRes = mysqli_query($GLOBALS['db'],$insertFPO);
+		if(!$fpoRes){
+			echo 'false';
+			exit();
 		} else {
 			echo 'true';
 		}
+
 
 	}
 
@@ -169,7 +197,7 @@
 			$rows[] = $r;
 		}
 
-		$ret = $rows[0]['offerID'];
+		$ret = $rows[0]['id'];
 		return $ret;
 	}
 
