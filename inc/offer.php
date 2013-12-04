@@ -1,7 +1,7 @@
 <?php
 
 	require_once(dirname(__FILE__).'/../config.php');
-	require_once(dirname(__FILE__).'/./mail.php');
+	require_once(dirname(__FILE__).'/../mail.php');
 
 
 	class Offer {
@@ -188,7 +188,7 @@
 		if(!$result){
 			echo 'false';
 		} else {
-			sendRequestEmail($offerid);
+			sendRequestEmail($offerID);
 			echo 'true';
 
 		}
@@ -235,10 +235,10 @@
 		foreach($rows as $row){
 			if($row['buyerid']!=$buyerID){
 				//echo "send e-mail to the suckers / ";
-				sendRejectionEmail($row['buyerid'],$offerid);
+				sendRejectionEmail($row['buyerid'],$offerID);
 			} else {
 				//echo "send e-mail to winner / ";
-				sendRejectionEmail($row['buyerid'],$offerid);
+				sendRejectionEmail($row['buyerid'],$offerID);
 			}
 		}
 
