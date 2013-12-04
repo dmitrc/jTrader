@@ -18,7 +18,7 @@
 	<script type="text/javascript" src="js/jquery.ba-hashchange.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>	
 	<script type="text/javascript" src="js/main.js"></script>
-	<title>jTrade</title>
+	<title>jTrader</title>
 </head>
 
 <body>
@@ -248,7 +248,7 @@
  $("#search_button").click( function() {
  	location.href = "search.php?query="+encodeURIComponent($("#search_bar").val());
  });
- 
+
   $('#search_bar').keydown(function(event){    
       if(event.keyCode==13){
            $('#search_button').trigger('click');

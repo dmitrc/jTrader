@@ -17,7 +17,7 @@
 	<script type="text/javascript" src="js/jquery.ba-hashchange.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>	
 	<script type="text/javascript" src="js/main.js"></script>
-	<title>jTrade</title>
+	<title>jTrader</title>
 </head>
 
 <body>
