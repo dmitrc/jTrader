@@ -65,10 +65,21 @@
 
 <!-- Main -->
 
+<?php
+	if (!isset($_GET['name'])) {
+		echo '<div class="row"><div class = "container well"><br/><p class = "lead text-danger textcenter">There is no data to display, as category name wasn\'t provided!</p></div></div>';
+		exit();
+	}
+	else {
+		# todo...
+	}
+?>
+
 <div class="row">
 	<div class="col-sm-3 well">
 		<div class="container">
 			<h4>Categories:</h4>
+			<div class="panel-group" id="categories">
 			<?php
 				$categories = getCategories();
 
@@ -76,25 +87,26 @@
 					echo '<div class="panel panel-default">
 					<div class="panel-heading">
 						<h5 class="panel-title">
-						<a href="category.php?name='.$category['category'].'">'.$category['category'].'</a></h5></div>
-					<div id="'.$category['category'].'">
+						<a class="categories-toggle" data-toggle="collapse" data-parent="#categories" href="#'.$category['category'].'">'.$category['category'].'</a></h5></div>
+					<div id="'.$category['category'].'" class="panel-collapse collapse">
 						<div class="panel-body">';
 					
 					foreach ($category['subcategories'] as $subcategory) {
 						echo '<a href="subcategory.php?name='.$subcategory.'">'.$subcategory.'</a><br/>';
 					}
 					
-					echo '</div>
+					echo '<br/><a href="category.php?name='.$category['category'].'">All '.$category['category'].'</a></div>
 					</div>
 				</div>';
 				}
 			?>
+			</div>
 		</div>
 	</div>
 	<div class="col-sm-9">
 		<div class="container">
 			<br/>
-			<p class="lead">Category name :</p>
+			<p class="lead"><?php echo $_GET['name']; ?> :</p>
 		</div>
 		<div class="container">
 			<div class="row"><div class="container">
