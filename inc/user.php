@@ -43,13 +43,11 @@
 	}
 
 	function login($username, $password) {
-
-        // todo: Echo an error message instead of 'false'
         
         error_reporting(0);
         $conn = ldap_connect("jacobs.jacobs-university.de",389);
         if (!ldap_bind($conn,$username."@jacobs.jacobs-university.de",$password)) {
-            echo "false";
+            echo '<div class="container"><p class="lead text-danger textcenter">Login failed!<br/>Please, check your credentials and try again.</p></div>';
             return false;
         }
 
@@ -57,7 +55,7 @@
         $r = ldap_get_entries($conn, $search);
 
         if (count($r) == 0) {
-          echo "false";
+          echo '<div class="container"><p class="lead text-danger textcenter">Login failed!<br/>Please, check your credentials and try again.</p></div>';
           return false;
         }
 
