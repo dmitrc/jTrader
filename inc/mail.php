@@ -32,11 +32,6 @@
 
         $to = getEmail($offerid);
 
-        else
-        {
-            echo 'false';
-        }
-
         $query = "SELECT Offers.name, FixedPriceOffers.price FROM Offers, FixedPriceOffers WHERE Offers.id = $offerid AND Offers.id = FixedPriceOffers.offerid;";
         $result = mysqli_query($GLOBALS['db'], $query);
 
