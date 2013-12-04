@@ -44,13 +44,13 @@
 				<div id="search_button" class="btn btn-default">Go!</div>
 			</form>
 			<ul class="navbar-nav nav navbar-right">
-				<li class="active"><a href="index.php">Home</a></li>
+				<li><a href="index.php">Home</a></li>
 				<li><a data-toggle="modal" href="#about-modal">About</a></li>
 				<li><a data-toggle="modal" href="#contact-modal">Contact</a></li>
 				<?php
 					$username = isLoggedIn();
 					if (!$username) {
-						echo '<li><a href="login.php">Login</a></li>';
+						echo '<li class="active"><a href="login.php">Login</a></li>';
 					}
 					else {
 						echo '<li><a href="add_item.php">Add item</a></li>';
@@ -63,6 +63,13 @@
 </nav>
 
 <!-- Main -->
+
+<?php
+	if (isLoggedIn()) {
+		echo '<div class="row"><div class = "container well"><br/><p class = "lead text-danger textcenter">Already logged in!</p></div></div>';
+		exit();
+	}
+?>
 
 <div class="row"><br/></div>
 <div class="row"><br/></div>
