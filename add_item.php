@@ -96,7 +96,7 @@
 			<label for="form_category" class="col-sm-2 control-label">Category</label>
 		    <div class="col-sm-10 col-lg-10 col-md-10">
 		    	<select class="form-control" id="form_category">
-				  <option>Cat1</option>
+				  <option>Mobiles</option>
 				  <option>Cat2</option>
 				  <option>Cat3</option>
 				  <option>Cat4</option>
@@ -249,8 +249,27 @@
 	  });
 
 	 $("#submit_button").click(function () {
-	    $.post("inc/api.php", { action:'saveBase64Image', args: [document.getElementById('uploaded-img').src]}, function(results){
-	          	console.log(results);
+	 	// Part 1. Upload image.
+	    $.post("inc/api.php", { action:'saveBase64Image', args: [document.getElementById('uploaded-img').src]}, function(imageurl){
+          	if (imageurl === "error") {
+          		alert('Uploading image failed. Please, try again later.');
+          	}
+          	else {
+          		// Part 2. Get current user id.
+          		$.post("inc/api.php", {action:'getUserID'}, function(userid) {
+
+          			// Part 3. Submit that S**t!
+          			$.post("inc/api.php", { action:'addOffer', args: [userid,"Mobiles","Sample","Sample description",imageurl]}, function(results){
+	          		 	if (results === "true") {
+	          		 		alert("Successfully posted!");
+	          		 		location.href = "index.php";
+	          		 	}
+	          		 	else {
+	          		 		alert("There was an error adding an offer. This shouldn't really happen.... Sorry :(");
+	          		 	}
+          			});
+          		});
+          	}
 	    });
 	  });
 

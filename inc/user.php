@@ -127,6 +127,10 @@
         echo $jsonstring;
     }
 
+    function getUserID() {
+        echo $_SESSION["user"]->eid;
+    }
+
     function getUserItems()
     {
         $eid = $_SESSION["user"]->eid;
