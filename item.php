@@ -95,7 +95,7 @@
 		<div class="row textcenter"><div class="container">
 			<br/>
 			<p class="lead"><?php echo $item['name']; ?></p>
-			<h5><em>posted by</em> <?php echo $item['author']; ?></h5>
+			<h5><em>posted by&nbsp;</em>&nbsp;&nbsp;<?php echo $item['author']; ?></h5>
 		</div></div>
 	</div>
 	<div class="container col-lg-6 col-sm-6 col-md-6">
