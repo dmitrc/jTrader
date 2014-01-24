@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 jTrader is simple and light tool to create a marketplace for a small organization, university or some other group.
 
 To install, you will need a MySQL database.
@@ -21,3 +22,9 @@ Authors:
 * Dmitrii Cucleschin
 * Nikolche Kolev
 * Andrei Giurgiu
+=======
+jTrader
+=======
+
+Simple and light marketplace platform for a small organization, community or university.
+>>>>>>> 758288f120d89107dd9aea39eda875fd880d8768
