@@ -1,9 +1,9 @@
 <?php
 	
-	define( 'DB_USER', 'dcnkag' );
-  define( 'DB_PASS', 'w95bGne620' );
-  define( 'DB_NAME', 'jtrader' );
-  define( 'DB_HOST', 'flanche.com' );
+	define( 'DB_USER', 'FILL-ME' );
+  define( 'DB_PASS', 'FILL-ME' );
+  define( 'DB_NAME', 'FILL-ME' );
+  define( 'DB_HOST', 'FILL-ME' );
 
   define( 'TABLE_USER', 'Users' );
 
